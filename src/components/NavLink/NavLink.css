@@ -1,0 +1,44 @@
+/* ============================================
+   NAV LINK — UNDERLINE HOVER ANIMATION
+   ============================================
+   Underline slides in from left on hover using
+   translateX transform for GPU acceleration.
+   ============================================ */
+
+.nav-link {
+  position: relative;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text-light);
+  padding: 0.5rem 0;
+  transition: color 0.4s var(--transition-smooth);
+  overflow: hidden;
+}
+
+/* Color change when navbar is solid */
+.navbar.is-solid .nav-link {
+  color: var(--color-text);
+}
+
+/* Active state */
+.nav-link--active,
+.nav-link:hover {
+  color: var(--color-accent) !important;
+}
+
+/* Underline pseudo-element */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: translateX(-101%);
+  transition: transform 0.4s var(--transition-smooth);
+}
+
+.nav-link:hover::after {
+  transform: translateX(0);
+}
