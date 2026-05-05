@@ -8,18 +8,19 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  height: var(--navbar-height);
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 clamp(1.5rem, 4vw, 3rem);
+  padding: 0 clamp(1.5rem, 2vw, 3rem);
+  border-radius: 50px;
 
   /* Initial transparent state */
   background-color: transparent;
-  transition:
+  /* transition:
     background-color 0.5s var(--transition-smooth),
     box-shadow 0.5s var(--transition-smooth),
-    transform 0.4s var(--transition-smooth);
+    transform 0.4s var(--transition-smooth); */
 }
 
 /* Solid state — applied when scrolled past threshold */
