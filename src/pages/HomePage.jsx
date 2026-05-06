@@ -2,6 +2,7 @@
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "../components/Navbar/Navbar";
 import Hero from "../components/Hero/Hero";
+import LogoMarquee from "../components/LogoMarquee/LogoMarquee";
 // import { useGSAP } from "@gsap/react";
 
 /**
@@ -42,6 +43,7 @@ function HomePage() {
     <>
       <Navbar />
       <Hero />
+      <LogoMarquee />
 
       {/* Footer */}
       <footer className="site-footer">
