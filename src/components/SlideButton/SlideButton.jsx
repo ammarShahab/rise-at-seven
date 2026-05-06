@@ -1,4 +1,4 @@
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useEffect } from "react";
 import gsap from "gsap";
 import "./SlideButton.css";
 
@@ -97,6 +97,15 @@ function SlideButton({ text, href, variant = "light", className = "" }) {
   const handleMouseLeave = useCallback(() => {
     if (!tlRef.current) return;
     tlRef.current.reverse();
+  }, []);
+
+  // Cleanup timeline on unmount
+  useEffect(() => {
+    return () => {
+      if (tlRef.current) {
+        tlRef.current.kill();
+      }
+    };
   }, []);
 
   return (
