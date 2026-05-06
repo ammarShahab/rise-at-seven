@@ -13,41 +13,72 @@
   justify-content: center;
 }
 
+/* ============================================
+   MEDIA — Background image with blur
+   ============================================ */
+
 .hero__media {
   position: absolute;
   inset: 0;
   z-index: 0;
+  /* Slight overscale so blur doesn't show hard edges */
+  transform: scale(1.05);
 }
 
 .hero__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.65);
+
+  /* Blur + darkening for text readability */
+  filter: brightness(1) blur(8px);
+
+  /* Smooth filter transition if you animate it later */
+  transition: filter 0.6s ease;
 }
+
+/* Optional: subtle dark overlay on top of blurred image */
+.hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  pointer-events: none;
+}
+
+/* ============================================
+   CONTENT — Sharp text above blur
+   ============================================ */
 
 .hero__content {
   position: relative;
   z-index: 1;
   text-align: center;
-  color: var(--color-text-light);
+  color: #ffffff;
   padding: 0 1.5rem;
-  max-width: 900px;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero__eyebrow {
   display: inline-block;
   font-size: 0.875rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: -1px;
+  line-height: 0.9;
   text-transform: uppercase;
-  color: var(--color-accent);
   margin-bottom: 1.5rem;
   opacity: 0;
 }
 
 .hero__title {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2.5rem, 6vw, 10rem);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -56,76 +87,134 @@
 }
 
 .hero__subtitle {
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
-  font-weight: 400;
+  font-size: clamp(1rem, 1.5vw, 2.25rem);
+  font-weight: 400; /* fixed: was 00 */
   line-height: 1.7;
+  letter-spacing: -2px;
   color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 2.5rem;
+  margin-bottom: rem; /* increased slightly to make room for logos */
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   opacity: 0;
 }
 
-.hero__cta {
-  display: inline-flex;
+/* ============================================
+   LOGO STRIP — FIXED VISIBILITY
+   ============================================ */
+
+.hero__logos {
+  display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 2.5rem;
-  background-color: var(--color-accent);
-  color: var(--color-text);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  border-radius: 9999px;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 1rem;
+}
+
+.hero__logo-item {
+  color: rgba(255, 255, 255, 0.75);
   transition:
-    transform 0.3s var(--transition-bounce),
-    background-color 0.3s ease;
-  opacity: 0;
+    color 0.3s ease,
+    transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: default;
 }
 
-.hero__cta:hover {
-  transform: translateY(-2px);
-  background-color: var(--color-accent-hover);
+/* Ensure SVGs and text inside inherit color properly */
+.hero__logo-item svg {
+  height: 100%;
+  width: auto;
+  display: block;
 }
 
-.hero__cta svg {
-  transition: transform 0.3s var(--transition-smooth);
+.logo-word {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 20px;
+  white-space: nowrap;
 }
 
-.hero__cta:hover svg {
-  transform: translateX(4px);
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .hero__logos {
+    display: none;
+  }
+
+  .hero__logo-item {
+    height: 22px;
+    font-size: 0.85rem;
+  }
 }
 
-/* Scroll indicator */
-.scroll-indicator {
+/* ============================================
+   HERO BOTTOM TEXT BLOCKS
+   ============================================
+   Desktop: left and right corners
+   Mobile: stacked center
+   ============================================ */
+
+.hero__bottom {
   position: absolute;
   bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
+  left: 0;
+  right: 0;
+  z-index: 2;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  animation: bounce 2s infinite;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+  pointer-events: none;
 }
 
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateX(-50%) translateY(0);
+.hero__bottom-left,
+.hero__bottom-right {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  max-width: 380px;
+  /* NO opacity: 0 here — GSAP controls visibility */
+}
+
+.hero__bottom-left,
+.hero__bottom-right {
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.hero__bottom-right {
+  text-align: right;
+}
+
+/* ============================================
+   MOBILE: Stack center, hide right block
+   ============================================ */
+
+@media (max-width: 768px) {
+  .hero__bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    bottom: 1.5rem;
   }
-  40% {
-    transform: translateX(-50%) translateY(-10px);
+
+  .hero__bottom-left,
+  .hero__bottom-right {
+    text-align: center;
+    max-width: 280px;
+    font-size: 0.75rem;
   }
-  60% {
-    transform: translateX(-50%) translateY(-5px);
+
+  .hero__bottom-right {
+    display: none;
   }
 }
