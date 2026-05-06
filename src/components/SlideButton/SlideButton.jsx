@@ -40,22 +40,8 @@ function ContentBlock({ text }) {
    MAIN COMPONENT
    ============================================ */
 
-/**
- * SlideButton — Reusable hover slide animation
- *
- * On hover:
- *   - Original content slides UP and fades out
- *   - Clone content slides UP from below and fades in
- * On mouse leave:
- *   - Timeline reverses, restoring original content
- *
- * Props:
- *   text      {string}  Button label
- *   href      {string}  Link destination
- *   variant   {string}  "light" | "dark" | "accent"
- *   className {string}  Extra CSS classes
- */
 function SlideButton({ text, href, variant = "light", className = "" }) {
+  const buttonRef = useRef(null); // NEW: ref for border-radius animation
   const originalRef = useRef(null);
   const cloneRef = useRef(null);
   const tlRef = useRef(null);
@@ -63,10 +49,22 @@ function SlideButton({ text, href, variant = "light", className = "" }) {
   const handleMouseEnter = useCallback(() => {
     if (tlRef.current) tlRef.current.kill();
 
+    const button = buttonRef.current;
     const original = originalRef.current;
     const clone = cloneRef.current;
 
     tlRef.current = gsap.timeline();
+
+    /* Border-radius morph: pill → 20px */
+    tlRef.current.to(
+      button,
+      {
+        borderRadius: "12px",
+        duration: 0.12,
+        ease: "power3.inOut",
+      },
+      0,
+    );
 
     /* Original exits upward */
     tlRef.current.to(
@@ -74,7 +72,7 @@ function SlideButton({ text, href, variant = "light", className = "" }) {
       {
         y: "-100%",
         opacity: 0,
-        duration: 0.35,
+        duration: 0.15,
         ease: "power2.in",
       },
       0,
@@ -87,10 +85,10 @@ function SlideButton({ text, href, variant = "light", className = "" }) {
       {
         y: "0%",
         opacity: 1,
-        duration: 0.4,
+        duration: 0.16,
         ease: "power2.out",
       },
-      0.05,
+      0.3,
     );
   }, []);
 
@@ -110,20 +108,17 @@ function SlideButton({ text, href, variant = "light", className = "" }) {
 
   return (
     <a
+      ref={buttonRef} // NEW: attach ref to button
       href={href}
       className={`slide-button slide-button--${variant} ${className}`}
       aria-label={text}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Mask clips overflow during slide */}
       <span className="slide-button__mask">
-        {/* Original stays in normal flow so button can size itself */}
         <span ref={originalRef} className="slide-button__original">
           <ContentBlock text={text} />
         </span>
-
-        {/* Clone is absolutely positioned, starts below */}
         <span ref={cloneRef} className="slide-button__clone">
           <ContentBlock text={text} />
         </span>
