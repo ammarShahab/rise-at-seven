@@ -14,20 +14,14 @@
   justify-content: space-between;
   padding: 0 clamp(1.5rem, 2vw, 3rem);
   border-radius: 50px;
-
-  /* Initial transparent state */
   background-color: transparent;
-  /* transition:
-    background-color 0.5s var(--transition-smooth),
-    box-shadow 0.5s var(--transition-smooth),
-    transform 0.4s var(--transition-smooth); */
 }
 
 /* Solid state — applied when scrolled past threshold */
 .navbar.is-solid {
-  background-color: rgba(250, 250, 249, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background-color: rgba(250, 250, 249, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.05),
     0 10px 30px rgba(0, 0, 0, 0.08);
@@ -42,7 +36,7 @@
 .navbar__logo {
   font-size: 1.5rem;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  /* letter-spacing: 0.3em; */
   color: var(--color-text-light);
   transition: color 0.4s var(--transition-smooth);
   position: relative;
@@ -62,7 +56,7 @@
   .navbar__nav {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 1rem;
   }
 }
 

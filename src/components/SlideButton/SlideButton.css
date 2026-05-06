@@ -1,0 +1,126 @@
+/* ============================================
+   SLIDE BUTTON — HOVER SLIDE ANIMATION
+   ============================================
+   Layout strategy:
+   - <a> is inline-flex, relative
+   - __mask is block with overflow:hidden
+   - __original is NORMAL FLOW (sizes the button)
+   - __clone is absolute, sits below mask initially
+   ============================================ */
+
+.slide-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 2rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+
+  /* Explicit text color enforcement */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === VARIANTS === */
+
+.slide-button--light {
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.slide-button--dark {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.slide-button--accent {
+  background-color: #a8f0e0;
+  color: #1a1a1a;
+}
+
+/* === MASK === */
+.slide-button__mask {
+  position: relative;
+  display: block;
+  overflow: hidden; /* clips sliding content */
+}
+
+/* === ORIGINAL — normal flow, defines button width === */
+.slide-button__original {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* === CLONE — absolute, starts below mask === */
+.slide-button__clone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(100%);
+  pointer-events: none; /* let clicks pass through */
+}
+
+/* === CONTENT BLOCK === */
+.slide-button__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.slide-button__text {
+  display: inline-block;
+  line-height: 1;
+}
+
+.slide-button__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.slide-button__arrow-icon {
+  display: block;
+}
+
+/* === NAVBAR CONTEXT OVERRIDES === */
+/* When inside solid navbar, ensure contrast */
+.navbar.is-solid .slide-button--light {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.navbar.is-solid .slide-button--light .slide-button__arrow-icon {
+  stroke: #ffffff;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 640px) {
+  .slide-button {
+    height: 44px;
+    padding: 0 1.5rem;
+    font-size: 0.8125rem;
+  }
+
+  .slide-button__arrow-icon {
+    width: 10px;
+    height: 10px;
+  }
+}

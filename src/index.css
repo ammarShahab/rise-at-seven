@@ -6,12 +6,24 @@
   --color-bg-dark: #111111;
   --color-text: #1a1a1a;
   --color-text-light: #ffffff;
-  --color-accent: #a8f0e0;
-  --color-accent-hover: #8ee0d0;
+  --color-accent: #ffffff;
+  --color-accent-hover: #ffffff;
   --color-muted: #737373;
   --navbar-height: 80px;
   --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================
+   PUBLIC SANS FONT — SINGLE REGULAR WEIGHT
+   ============================================ */
+
+@font-face {
+  font-family: "Public Sans";
+  src: url("/fonts/PublicSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 * {
@@ -27,7 +39,7 @@ html {
 
 body {
   font-family:
-    "Inter",
+    "Public Sans",
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;

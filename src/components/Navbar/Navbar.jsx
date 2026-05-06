@@ -2,10 +2,10 @@ import { useState } from "react";
 import { gsap } from "gsap";
 import { useScrollDirection } from "../../hooks/useScrollDirection";
 import NavLink from "../NavLink/NavLink";
-import FlipButton from "../FlipButton/FlipButton";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import "./Navbar.css";
 import { useGSAP } from "@gsap/react";
+import SlideButton from "../SlideButton/SlideButton";
 
 /**
  * Navbar Component
@@ -81,7 +81,7 @@ function Navbar() {
 
         {/* CTA Button */}
         <div className="navbar__actions">
-          <FlipButton
+          <SlideButton
             text="Get in touch"
             href="#contact"
             className="navbar__cta"
