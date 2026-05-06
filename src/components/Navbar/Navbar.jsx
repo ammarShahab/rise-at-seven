@@ -87,6 +87,8 @@ function Navbar() {
             className="navbar__cta"
           />
 
+          <SlideButton text="Get in touch" href="#contact" ghost />
+
           {/* Mobile Menu Toggle */}
           <button
             className={`menu-toggle ${isMobileMenuOpen ? "is-active" : ""}`}

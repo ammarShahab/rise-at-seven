@@ -1,9 +1,10 @@
 /* ============================================
-   SLIDE BUTTON
+   SLIDE BUTTON — MULTIPLE EFFECT SUPPORT
    ============================================
-   NOTE: No CSS :hover border-radius here.
-   GSAP owns the borderRadius animation so it
-   reverses smoothly on mouse leave.
+   Two modes:
+   1. Filled (default)  : bg color + radius morph via GSAP
+   2. Ghost  (ghost)    : transparent bg, no radius morph,
+                          slide effect only, inherits text color
    ============================================ */
 
 .slide-button {
@@ -13,10 +14,7 @@
   justify-content: center;
   height: 48px;
   padding: 0 2rem;
-
-  /* Default: full pill */
   border-radius: 9999px;
-
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
@@ -26,7 +24,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* === VARIANTS === */
+/* ============================================
+   VARIANTS — FILLED
+   ============================================ */
+
 .slide-button--light {
   background-color: #ffffff;
   color: #1a1a1a;
@@ -42,14 +43,44 @@
   color: #1a1a1a;
 }
 
-/* === MASK === */
+/* ============================================
+   VARIANTS — GHOST (transparent, slide-only)
+   ============================================ */
+
+.slide-button--ghost {
+  background-color: transparent;
+  color: inherit; /* takes color from parent/navbar */
+  padding: 0; /* remove horizontal padding so text sits naturally */
+  height: auto; /* let content define height */
+}
+
+/* Ghost navbar adaptation: white text on hero image */
+.navbar:not(.is-solid) .slide-button--ghost {
+  color: #ffffff;
+}
+
+/* Ghost navbar adaptation: dark text when scrolled/solid */
+.navbar.is-solid .slide-button--ghost {
+  color: #1a1a1a;
+}
+
+/* ============================================
+   MASK & CONTENT LAYERS
+   ============================================ */
+
 .slide-button__mask {
   position: relative;
   display: block;
   overflow: hidden;
 }
 
-/* === ORIGINAL === */
+/* Ghost mode: allow overflow so text isn't clipped if needed,
+   but keep mask for slide consistency */
+.slide-button--ghost .slide-button__mask {
+  overflow: hidden;
+  padding: 0.25rem 0; /* tiny vertical breathing room */
+}
+
 .slide-button__original {
   position: relative;
   display: flex;
@@ -58,7 +89,6 @@
   gap: 0.5rem;
 }
 
-/* === CLONE === */
 .slide-button__clone {
   position: absolute;
   top: 0;
@@ -74,7 +104,6 @@
   pointer-events: none;
 }
 
-/* === CONTENT === */
 .slide-button__content {
   display: flex;
   align-items: center;
@@ -98,7 +127,10 @@
   display: block;
 }
 
-/* === NAVBAR OVERRIDES === */
+/* ============================================
+   NAVBAR CONTEXT OVERRIDES
+   ============================================ */
+
 .navbar.is-solid .slide-button--light {
   background-color: #1a1a1a;
   color: #ffffff;
@@ -108,12 +140,20 @@
   stroke: #ffffff;
 }
 
-/* === RESPONSIVE === */
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
 @media (max-width: 640px) {
   .slide-button {
     height: 44px;
     padding: 0 1.5rem;
     font-size: 0.8125rem;
+  }
+
+  .slide-button--ghost {
+    height: auto;
+    padding: 0;
   }
 
   .slide-button__arrow-icon {

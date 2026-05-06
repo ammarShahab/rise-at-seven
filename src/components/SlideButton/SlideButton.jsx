@@ -40,8 +40,24 @@ function ContentBlock({ text }) {
    MAIN COMPONENT
    ============================================ */
 
-function SlideButton({ text, href, variant = "light", className = "" }) {
-  const buttonRef = useRef(null); // NEW: ref for border-radius animation
+/**
+ * SlideButton — Reusable hover slide animation
+ *
+ * Props:
+ *   text      {string}  Button label
+ *   href      {string}  Link destination
+ *   variant   {string}  "light" | "dark" | "accent" | "ghost"
+ *   ghost     {boolean} If true: transparent bg, no radius morph, slide only
+ *   className {string}  Extra CSS classes
+ */
+function SlideButton({
+  text,
+  href,
+  variant = "light",
+  ghost = false,
+  className = "",
+}) {
+  const buttonRef = useRef(null);
   const originalRef = useRef(null);
   const cloneRef = useRef(null);
   const tlRef = useRef(null);
@@ -55,18 +71,20 @@ function SlideButton({ text, href, variant = "light", className = "" }) {
 
     tlRef.current = gsap.timeline();
 
-    /* Border-radius morph: pill → 20px */
-    tlRef.current.to(
-      button,
-      {
-        borderRadius: "12px",
-        duration: 0.12,
-        ease: "power3.inOut",
-      },
-      0,
-    );
+    /* ── FILLED-ONLY: Border-radius morph ── */
+    if (!ghost) {
+      tlRef.current.to(
+        button,
+        {
+          borderRadius: "12px",
+          duration: 0.12,
+          ease: "power2.out",
+        },
+        0,
+      );
+    }
 
-    /* Original exits upward */
+    /* ── SLIDE: Original exits upward ── */
     tlRef.current.to(
       original,
       {
@@ -78,7 +96,7 @@ function SlideButton({ text, href, variant = "light", className = "" }) {
       0,
     );
 
-    /* Clone enters from below */
+    /* ── SLIDE: Clone enters from below ── */
     tlRef.current.fromTo(
       clone,
       { y: "100%", opacity: 0 },
@@ -88,29 +106,32 @@ function SlideButton({ text, href, variant = "light", className = "" }) {
         duration: 0.16,
         ease: "power2.out",
       },
-      0.3,
+      0.3, // gap before clone appears
     );
-  }, []);
+  }, [ghost]);
 
   const handleMouseLeave = useCallback(() => {
     if (!tlRef.current) return;
     tlRef.current.reverse();
   }, []);
 
-  // Cleanup timeline on unmount
+  /* Cleanup on unmount */
   useEffect(() => {
     return () => {
-      if (tlRef.current) {
-        tlRef.current.kill();
-      }
+      if (tlRef.current) tlRef.current.kill();
     };
   }, []);
 
+  /* Build class list: variant + ghost modifier */
+  const variantClass = ghost
+    ? `slide-button--ghost slide-button--${variant}`
+    : `slide-button--${variant}`;
+
   return (
     <a
-      ref={buttonRef} // NEW: attach ref to button
+      ref={buttonRef}
       href={href}
-      className={`slide-button slide-button--${variant} ${className}`}
+      className={`slide-button ${variantClass} ${className}`}
       aria-label={text}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
