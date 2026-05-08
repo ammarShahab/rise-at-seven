@@ -417,8 +417,18 @@ const FeaturedWork = () => {
                   ref={(el) => (projectItemRefs.current[i] = el)}
                   className="project-item"
                   data-cursor-hover
+                  tabIndex={0}
+                  role="button"
                   onMouseEnter={() => handleProjectEnter(i)}
                   onMouseLeave={handleProjectLeave}
+                  onFocus={() => handleProjectEnter(i)}
+                  onBlur={handleProjectLeave}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                      e.preventDefault();
+                      handleProjectEnter(i);
+                    }
+                  }}
                 >
                   <h3 className="proj-title">{project.title}</h3>
                   <span
