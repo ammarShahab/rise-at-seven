@@ -5,7 +5,7 @@ import Hero from "../components/Hero/Hero";
 import LogoMarquee from "../components/LogoMarquee/LogoMarquee";
 import DemandSection from "../components/DemandSection/DemandSection";
 import OurServices from "../components/OurServices/OurServices";
-// import FeaturedWork from "../components/FeaturedWork/FeaturedWork";
+import FeaturedWork from "../components/FeaturedWork/FeaturedWork";
 // import { useGSAP } from "@gsap/react";
 
 /**
@@ -48,7 +48,7 @@ function HomePage() {
       <Hero />
       <LogoMarquee />
       <DemandSection />
-      {/* <FeaturedWork /> */}
+      <FeaturedWork />
       <OurServices />
 
       {/* Footer */}

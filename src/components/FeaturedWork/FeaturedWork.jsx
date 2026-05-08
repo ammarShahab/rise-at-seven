@@ -270,27 +270,28 @@ const FeaturedWork = () => {
     const nextSection = section?.nextElementSibling;
     if (!section || !nextSection) return;
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        nextSection,
-        { y: 120, opacity: 0.2 },
-        {
-          y: 0,
-          opacity: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "60% bottom", // start revealing when we're 60% through
-            end: "bottom top",
-            scrub: 1.2, // smooth scrub with slight lag for premium feel
-          },
+    const tween = gsap.fromTo(
+      nextSection,
+      { y: 120, opacity: 0.2 },
+      {
+        y: 0,
+        opacity: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "60% bottom",
+          end: "bottom top",
+          scrub: 1.2,
         },
-      );
-    }, section);
+      },
+    );
 
-    return () => ctx.revert();
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+      gsap.set(nextSection, { clearProps: "all" });
+    };
   }, []);
-
   // -------------------------------------------------------------------------
   // 2. HOVER-BASED IMAGE COLOR REVEAL + TEXT UPDATES
   // -------------------------------------------------------------------------
@@ -504,12 +505,6 @@ const FeaturedWork = () => {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Next Section Placeholder (for demo purposes) */}
-      <section className="next-section">
-        <h2>Next Section</h2>
-        <p>Automatically revealed as Featured Work scrolls out.</p>
       </section>
 
       {/* Custom Cursor */}
