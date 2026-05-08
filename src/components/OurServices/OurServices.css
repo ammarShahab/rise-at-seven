@@ -1,0 +1,245 @@
+:root {
+  --svc-bg: #ebebeb;
+  --svc-text: #111111;
+  --svc-text-muted: rgba(17, 17, 17, 0.35);
+  --svc-divider: rgba(17, 17, 17, 0.12);
+  --svc-radius: 60px;
+  --svc-radius-sm: 12px;
+}
+
+.services-section {
+  position: relative;
+  background: var(--svc-bg);
+  color: var(--svc-text);
+  min-height: 100vh;
+  padding: 8vh 3vw;
+  overflow: hidden;
+}
+
+/* Header - VISIBLE BY DEFAULT, GSAP animates from opacity:0 as enhancement */
+.services-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  /* NO opacity: 0 here! */
+}
+
+.services-title {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 0;
+}
+
+.title-word {
+  display: inline-block;
+}
+
+.title-image {
+  display: inline-flex;
+  width: clamp(48px, 4vw, 72px);
+  height: clamp(48px, 4vw, 72px);
+  border-radius: var(--svc-radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+  vertical-align: middle;
+  transform: translateY(2px);
+}
+
+.title-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 100px;
+  background: #fff;
+  color: var(--svc-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--svc-divider);
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.view-all-btn:hover {
+  background: #f5f5f5;
+  transform: translateY(-1px);
+}
+
+.view-all-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.section-divider {
+  height: 1px;
+  background: var(--svc-divider);
+  margin-bottom: 1.5rem;
+}
+
+/* 2-Column Layout */
+.services-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 3vw;
+}
+
+.services-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* First item in left column gets the pill image effect (like reference) */
+/* .services-column--left .service-row:first-child {
+  min-height: clamp(80px, 14vh, 160px);
+} */
+
+/* Responsive: stack to single column on mobile */
+@media (max-width: 768px) {
+  .services-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.service-row {
+  position: relative;
+  border-radius: var(--svc-radius);
+  overflow: hidden;
+  min-height: clamp(80px, 10vh, 120px);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.4s ease;
+}
+
+.service-row:hover {
+  background: transparent;
+}
+
+.service-image-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border-radius: var(--svc-radius);
+  overflow: hidden;
+  will-change: clip-path, transform;
+  pointer-events: none;
+}
+
+.service-image-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.service-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.service-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  pointer-events: auto;
+}
+
+.service-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  opacity: 0;
+  transform: scale(0) rotate(-45deg);
+  will-change: transform, opacity;
+}
+
+.service-arrow svg {
+  width: 24px;
+  height: 24px;
+}
+
+.service-title {
+  font-size: clamp(1.5rem, 3vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--svc-text);
+  will-change: transform, opacity;
+  transition: color 0.3s ease;
+}
+
+.service-row.is-hovered .service-title {
+  color: #fff;
+}
+
+.row-divider {
+  position: absolute;
+  bottom: 0;
+  left: 2.5rem;
+  right: 2.5rem;
+  height: 1px;
+  background: var(--svc-divider);
+  z-index: 4;
+  transition: opacity 0.3s ease;
+}
+
+.service-row.is-hovered .row-divider {
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .services-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .services-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .service-content {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .service-title {
+    font-size: clamp(1.25rem, 5vw, 2rem);
+  }
+}

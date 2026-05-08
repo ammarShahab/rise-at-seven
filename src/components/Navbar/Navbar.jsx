@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { gsap } from "gsap";
+// import { gsap } from "gsap";
 import { useScrollDirection } from "../../hooks/useScrollDirection";
 import NavLink from "../NavLink/NavLink";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import "./Navbar.css";
-import { useGSAP } from "@gsap/react";
+// import { useGSAP } from "@gsap/react";
 import SlideButton from "../SlideButton/SlideButton";
 
 /**
@@ -39,16 +39,15 @@ function Navbar() {
   ];
 
   // GSAP entrance animation on mount
-
-  useGSAP(() => {
+  /*  useGSAP(() => {
     gsap.from(".navbar", {
-      y: -100,
+      y: -200,
       opacity: 0,
       duration: 1,
       ease: "power3.out",
       delay: 0.1, // Add a delay of 0.1 seconds
     });
-  }, []);
+  }, []); */
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
@@ -86,8 +85,6 @@ function Navbar() {
             href="#contact"
             className="navbar__cta"
           />
-
-          <SlideButton text="Get in touch" href="#contact" ghost />
 
           {/* Mobile Menu Toggle */}
           <button

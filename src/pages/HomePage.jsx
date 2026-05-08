@@ -3,6 +3,9 @@
 import Navbar from "../components/Navbar/Navbar";
 import Hero from "../components/Hero/Hero";
 import LogoMarquee from "../components/LogoMarquee/LogoMarquee";
+import DemandSection from "../components/DemandSection/DemandSection";
+import OurServices from "../components/OurServices/OurServices";
+// import FeaturedWork from "../components/FeaturedWork/FeaturedWork";
 // import { useGSAP } from "@gsap/react";
 
 /**
@@ -44,6 +47,9 @@ function HomePage() {
       <Navbar />
       <Hero />
       <LogoMarquee />
+      <DemandSection />
+      {/* <FeaturedWork /> */}
+      <OurServices />
 
       {/* Footer */}
       <footer className="site-footer">

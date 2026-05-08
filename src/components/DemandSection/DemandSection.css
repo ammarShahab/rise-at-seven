@@ -1,0 +1,130 @@
+/* ============================================
+   DEMAND SECTION
+   ============================================ */
+
+.demand-section {
+  width: 100%;
+  background-color: #f0eeeb;
+  padding: 6rem clamp(1.5rem, 4vw, 3rem);
+}
+
+.demand-section__container {
+  /* max-width: 1400px; */
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4rem;
+}
+
+/* Left side */
+.demand-section__left {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #1a1a1a;
+  letter-spacing: -0.05em;
+
+  max-width: 500px;
+  margin: 0;
+}
+
+/* Right side */
+.demand-section__right {
+  max-width: 600px;
+}
+
+.demand-section__title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #1a1a1a;
+  margin: 0 0 2rem 0;
+  position: relative;
+  display: inline-block;
+}
+
+/* Inline image */
+.demand-section__image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  transform: translateY(-5px);
+}
+
+/* Buttons */
+.demand-section__buttons {
+  display: flex;
+  gap: 1rem;
+  /* flex-wrap: wrap; */
+}
+
+.demand-section__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.demand-section__btn--filled {
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.demand-section__btn--filled:hover {
+  background-color: #e8e8e8;
+}
+
+.demand-section__btn--ghost {
+  background-color: transparent;
+  color: #1a1a1a;
+}
+
+.demand-section__btn--ghost:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* ============================================
+   MOBILE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .demand-section__container {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .demand-section__left {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .demand-section__title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .demand-section__image {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+  }
+
+  .demand-section__buttons {
+    gap: 0.75rem;
+  }
+
+  .demand-section__btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}

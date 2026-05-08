@@ -208,7 +208,7 @@ function Hero() {
           trigger: ".hero",
           start: "top top",
           end: "bottom top",
-          scrub: true,
+          // scrub: true,
         },
         y: 100,
         scale: 1,

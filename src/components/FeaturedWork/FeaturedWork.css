@@ -1,0 +1,281 @@
+/* Hide default cursor when hovering interactive areas */
+[data-cursor-hover] {
+  cursor: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Custom Cursor
+   --------------------------------------------------------------------------- */
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  margin-left: calc(var(--cursor-size) / -2);
+  margin-top: calc(var(--cursor-size) / -2);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--cursor-dot-size);
+  height: var(--cursor-dot-size);
+  margin-left: calc(var(--cursor-dot-size) / -2);
+  margin-top: calc(var(--cursor-dot-size) / -2);
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+/* ---------------------------------------------------------------------------
+   Featured Work Section
+   --------------------------------------------------------------------------- */
+.featured-work {
+  position: relative;
+  background: var(--fw-bg);
+  color: var(--fw-text);
+  min-height: 100vh;
+  padding: 10vh 4vw;
+  overflow: hidden;
+}
+
+.featured-work__inner {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4vw;
+  max-width: 1600px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* ---------------------------------------------------------------------------
+   Left Column
+   --------------------------------------------------------------------------- */
+.featured-work__left {
+  position: sticky;
+  top: 15vh;
+  align-self: start;
+}
+
+.fw-label {
+  font-size: clamp(0.875rem, 1vw, 1rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 4rem;
+  opacity: 0; /* animated in by GSAP */
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-item {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s;
+}
+
+.project-item:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.proj-title {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 0;
+  opacity: 0.25; /* GSAP overrides this */
+  will-change: transform, opacity;
+}
+
+.proj-year {
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0.25;
+  letter-spacing: 0.05em;
+  transform: translateY(-0.5em);
+}
+
+/* ---------------------------------------------------------------------------
+   Right Column: Cards Stack
+   --------------------------------------------------------------------------- */
+.featured-work__right {
+  position: relative;
+}
+
+.cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fw-gap);
+}
+
+.image-card {
+  position: relative;
+  border-radius: var(--fw-radius);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: #141414;
+  transform: translateZ(0); /* promote to composite layer */
+}
+
+/* Base grayscale image */
+.img-grayscale {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) brightness(0.35);
+  transform: scale(1.1);
+  transition: none; /* GSAP handles animation */
+}
+
+/* Color reveal container */
+.img-color-reveal {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* clip-path animated by GSAP: inset(0 0 100% 0) -> inset(0 0 0% 0) */
+  will-change: clip-path;
+}
+
+.img-color {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+}
+
+/* ---------------------------------------------------------------------------
+   Card Overlay UI
+   --------------------------------------------------------------------------- */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.card-category {
+  align-self: flex-end;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.card-text-box {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 1.75rem;
+  border-radius: 16px;
+  max-width: 90%;
+  gap: 1rem;
+}
+
+.card-headline {
+  font-size: clamp(1.25rem, 2vw, 2rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin: 0;
+  color: #0a0a0a;
+}
+
+.card-arrow {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #b8f5d9; /* mint accent from reference */
+  color: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------------------------------------------------------------------------
+   Next Section (for auto-reveal demo)
+   --------------------------------------------------------------------------- */
+.next-section {
+  min-height: 100vh;
+  background: #f4f4f5;
+  color: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem;
+  will-change: transform, opacity;
+}
+
+.next-section h2 {
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.next-section p {
+  font-size: 1.125rem;
+  opacity: 0.6;
+}
+
+/* ---------------------------------------------------------------------------
+   Responsive
+   --------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .featured-work__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-work__left {
+    position: relative;
+    top: 0;
+  }
+
+  .proj-title {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+
+  .image-card {
+    aspect-ratio: 16 / 10;
+  }
+
+  /* Disable custom cursor on touch devices */
+  .cursor-ring,
+  .cursor-dot {
+    display: none;
+  }
+
+  [data-cursor-hover] {
+    cursor: pointer;
+  }
+}
