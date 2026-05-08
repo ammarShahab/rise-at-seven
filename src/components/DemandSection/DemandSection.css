@@ -74,11 +74,28 @@
   font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;
+  outline: none; /* Remove default outline for custom focus */
+}
+
+.demand-section__btn:focus,
+.demand-section__btn:focus-visible {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0, 95, 204, 0.15);
+  z-index: 1;
 }
 
 .demand-section__btn--filled {
   background-color: #ffffff;
   color: #1a1a1a;
+  position: relative;
+}
+
+.demand-section__btn--filled:focus,
+.demand-section__btn--filled:focus-visible {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px #b3d4fc;
 }
 
 .demand-section__btn--filled:hover {
@@ -88,6 +105,14 @@
 .demand-section__btn--ghost {
   background-color: transparent;
   color: #1a1a1a;
+  position: relative;
+}
+
+.demand-section__btn--ghost:focus,
+.demand-section__btn--ghost:focus-visible {
+  outline: 2px dashed #005fcc;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px #e0f0ff;
 }
 
 .demand-section__btn--ghost:hover {

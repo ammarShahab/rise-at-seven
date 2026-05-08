@@ -71,9 +71,19 @@
   border: 1px solid var(--svc-divider);
   transition:
     background 0.3s ease,
-    transform 0.3s ease;
+    transform 0.3s ease,
+    outline 0.2s ease,
+    box-shadow 0.2s ease;
   cursor: pointer;
   flex-shrink: 0;
+  outline: none;
+}
+
+.view-all-btn:focus,
+.view-all-btn:focus-visible {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0, 95, 204, 0.15);
 }
 
 .view-all-btn:hover {
