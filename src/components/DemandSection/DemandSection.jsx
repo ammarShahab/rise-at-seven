@@ -28,8 +28,8 @@ function DemandSection() {
           </h2>
 
           <div className="demand-section__buttons">
-            <SlideButton text="Our Story" href="#contact" />
-            <SlideButton text="Our Services" href="#contact" ghost />
+            <SlideButton text="Our Story" href="#story" />
+            <SlideButton text="Our Services" href="#services" ghost />{" "}
           </div>
         </div>
       </div>
