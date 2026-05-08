@@ -21,7 +21,7 @@ function DemandSection() {
             <br />
             Discovery
             <img
-              src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=200&q=80"
+              src="/src/assets/images/team-member.avif"
               alt="Team member"
               className="demand-section__image"
             />
