@@ -9,6 +9,7 @@ import FeaturedWork from "../components/FeaturedWork/FeaturedWork";
 import PioneersCard from "../components/LegacySection/PioneersCard";
 import Footer from "../components/Footer/Footer";
 import MarqueeSection from "../components/MarqueeSection/MarqueeSection";
+import WhatsNewSection from "../components/WhatsNewSection/WhatsNewSection";
 
 // import { useGSAP } from "@gsap/react";
 
@@ -56,6 +57,7 @@ function HomePage() {
       <OurServices />
       <MarqueeSection />
       <PioneersCard />
+      <WhatsNewSection />
       <Footer />
     </>
   );
