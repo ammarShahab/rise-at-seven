@@ -11,7 +11,7 @@
   position: relative;
   background: var(--svc-bg);
   color: var(--svc-text);
-  min-height: 100vh;
+  min-height: 60vh;
   padding: 8vh 3vw;
   overflow: hidden;
 }

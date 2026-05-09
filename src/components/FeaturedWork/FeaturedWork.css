@@ -1,6 +1,8 @@
-/* Hide default cursor when hovering interactive areas */
-[data-cursor-hover] {
-  cursor: none;
+/* Hide default cursor on fine pointer devices when hovering interactive areas */
+@media (pointer: fine) {
+  [data-cursor-hover] {
+    cursor: none;
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -94,6 +96,13 @@
 
 .project-item:hover {
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+.project-item:focus,
+.project-item:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: -2px;
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .proj-title {

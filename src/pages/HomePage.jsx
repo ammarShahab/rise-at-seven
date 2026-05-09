@@ -6,6 +6,9 @@ import LogoMarquee from "../components/LogoMarquee/LogoMarquee";
 import DemandSection from "../components/DemandSection/DemandSection";
 import OurServices from "../components/OurServices/OurServices";
 import FeaturedWork from "../components/FeaturedWork/FeaturedWork";
+import PioneersCard from "../components/LegacySection/PioneersCard";
+import Footer from "../components/Footer/Footer";
+
 // import { useGSAP } from "@gsap/react";
 
 /**
@@ -50,14 +53,8 @@ function HomePage() {
       <DemandSection />
       <FeaturedWork />
       <OurServices />
-
-      {/* Footer */}
-      <footer className="site-footer">
-        <div className="site-footer__logo">Rise at Seven</div>
-        <p className="site-footer__copy">
-          © 2025 Rise at Seven Ltd. All rights reserved.
-        </p>
-      </footer>
+      <PioneersCard />
+      <Footer />
     </>
   );
 }

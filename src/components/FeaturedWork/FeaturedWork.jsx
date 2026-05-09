@@ -424,7 +424,11 @@ const FeaturedWork = () => {
                   onFocus={() => handleProjectEnter(i)}
                   onBlur={handleProjectLeave}
                   onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                    if (
+                      e.key === "Enter" ||
+                      e.key === " " ||
+                      e.key === "Spacebar"
+                    ) {
                       e.preventDefault();
                       handleProjectEnter(i);
                     }
