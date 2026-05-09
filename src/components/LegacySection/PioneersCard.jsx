@@ -40,13 +40,13 @@ const PioneersCard = () => {
 
         if (index === sections.length - 1) return;
 
-        ScrollTrigger.create({
+        /* ScrollTrigger.create({
           trigger: section,
           start: "bottom bottom",
           end: "bottom top",
           pin: true,
           pinSpacing: false,
-        });
+        }); */
       });
     },
     { scope: containerRef },
@@ -55,7 +55,7 @@ const PioneersCard = () => {
   return (
     <>
       <ReactLenis root options={{ autoRaf: false }} ref={lenisRef} />
-      <main className="pioneers-section">
+      <div className="pioneers-section">
         <div className="pioneers-content">
           <p className="pioneers-heading">Legacy In The Making</p>
         </div>
@@ -142,7 +142,7 @@ const PioneersCard = () => {
             </div>
           </section>
         </div>
-      </main>
+      </div>
     </>
   );
 };
