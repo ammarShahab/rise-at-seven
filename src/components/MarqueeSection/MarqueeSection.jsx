@@ -32,7 +32,7 @@ const CONFIG = {
   // Maximum speed multiplier (prevents seizure-like motion)
   maxSpeedMult: 6.0,
   // Decay rate for target speed when scroll stops (per frame, 0-1)
-  speedDecay: 0.02,
+  speedDecay: 0.04,
 };
 
 /* ------------------------------------------------------------------ */
@@ -71,12 +71,15 @@ export default function MarqueeSection() {
     originalItemsRef.current = originalItems;
 
     const originalWidth = content.scrollWidth;
+    if (originalWidth === 0) {
+      console.warn("MarqueeSection: Content has zero width, skipping setup");
+      return;
+    }
     contentWidthRef.current = originalWidth;
 
     const viewportW = window.innerWidth;
     // Enough clones to fill viewport on both sides + buffer
     const copiesNeeded = Math.ceil(viewportW / originalWidth) + 2;
-
     // PREPEND clones (for rightward / reverse movement)
     // We insert in reverse order so the sequence remains correct
     for (let i = copiesNeeded - 1; i >= 0; i--) {

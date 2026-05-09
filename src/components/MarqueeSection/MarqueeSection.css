@@ -22,34 +22,6 @@
 }
 
 /* ============================================
-   BADGE / LABEL
-   ============================================ */
-
-.marquee-badge {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  z-index: 10;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background-color: #a7f3d0;
-  color: #064e3b;
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  letter-spacing: -0.01em;
-  cursor: pointer;
-  user-select: none;
-}
-
-.marquee-badge__arrow {
-  font-size: 0.9em;
-  line-height: 1;
-}
-
-/* ============================================
    MARQUEE TRACK & CONTENT
    ============================================ */
 
