@@ -1,17 +1,3 @@
-/**
- * ==============   Footer Styles   ================
- *
- * Premium dark footer for "Rise at Seven" agency.
- * Matches reference designs for desktop and mobile.
- *
- * Color palette:
- * - Background: #111111 (near-black)
- * - Text primary: #ffffff
- * - Text muted: #888888
- * - Input background: #1a1a1a
- * - Accent: #a8e6cf (mint arrow button)
- */
-
 /* ============================================
    FOOTER BASE
    ============================================ */
@@ -21,6 +7,9 @@
   color: #ffffff;
   padding: 48px 0 24px;
   border-radius: 20px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
 }
 
 .footer-inner {
@@ -30,7 +19,8 @@
 }
 
 /* ============================================
-   NEWSLETTER SECTION
+   TOP SECTION WRAPPER
+   Holds newsletter + nav side-by-side on desktop
    ============================================ */
 .footer-top {
   margin-bottom: 48px;
@@ -38,17 +28,16 @@
 
 .footer-top-inner {
   display: flex;
-  /* justify-content: ; */
   gap: 60px;
   align-items: flex-start;
 }
 
-.footer-links {
-  flex: 1;
-}
-
+/* ============================================
+   NEWSLETTER SECTION
+   ============================================ */
 .newsletter {
   flex: 1;
+  min-width: 0; /* Prevent flex item overflow */
 }
 
 .newsletter-title {
@@ -109,7 +98,6 @@
 
 /* ============================================
    SOCIAL ICONS
-   Small pill buttons with arrow icons
    ============================================ */
 .socials {
   display: flex;
@@ -142,13 +130,14 @@
 
 /* ============================================
    NAVIGATION LINKS
-   3-column grid on desktop
+   RENAMED from .footer-links to .footer-nav
+   to avoid collision with the layout wrapper
    ============================================ */
-.footer-links {
+.footer-nav {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
-  margin-bottom: 64px;
 }
 
 .link-column {
@@ -176,7 +165,6 @@
 
 /* ============================================
    BRAND MARK
-   Massive "Rise at Seven®" text
    ============================================ */
 .footer-brand {
   margin-bottom: 32px;
@@ -199,7 +187,6 @@
   vertical-align: super;
   margin-left: 4px;
   display: inline-block;
-  /* border: 2px solid #ffffff; */
   border-radius: 50%;
   width: 1.2em;
   height: 1.2em;
@@ -209,7 +196,6 @@
 
 /* ============================================
    BOTTOM BAR
-   Copyright + legal links
    ============================================ */
 .footer-bottom {
   display: flex;
@@ -259,11 +245,19 @@
 }
 
 /* ============================================
-   RESPONSIVE: TABLET
+   RESPONSIVE: TABLET (≤900px)
    ============================================ */
 @media (max-width: 900px) {
   .footer-inner {
     padding: 0 32px;
+  }
+
+  .footer-top-inner {
+    gap: 40px;
+  }
+
+  .footer-nav {
+    gap: 24px;
   }
 
   .brand-text {
@@ -272,12 +266,12 @@
 }
 
 /* ============================================
-   RESPONSIVE: MOBILE
-   Matches the right-side reference image
+   RESPONSIVE: MOBILE (≤640px)
    ============================================ */
 @media (max-width: 640px) {
   .footer {
     padding: 32px 0 20px;
+    border-radius: 16px;
   }
 
   .footer-inner {
@@ -288,6 +282,12 @@
     margin-bottom: 32px;
   }
 
+  /* STACK NEWSLETTER + NAV VERTICALLY */
+  .footer-top-inner {
+    flex-direction: column;
+    gap: 32px;
+  }
+
   .newsletter-title {
     font-size: 18px;
   }
@@ -296,14 +296,14 @@
     max-width: 100%;
   }
 
-  /* Links: 2-column grid for first 2 columns, then full width */
-  .footer-links {
+  /* NAV LINKS: 2-column grid */
+  .footer-nav {
     grid-template-columns: 1fr 1fr;
     gap: 24px 32px;
-    margin-bottom: 32px;
+    width: 100%;
   }
 
-  /* Third column (locations) spans full width below */
+  /* Third column (locations) spans full width */
   .link-column:nth-child(3) {
     grid-column: 1 / -1;
     display: grid;
@@ -319,13 +319,11 @@
     font-size: 13px;
   }
 
-  /* Brand text smaller on mobile */
   .brand-text {
     font-size: clamp(42px, 14vw, 72px);
     line-height: 0.95;
   }
 
-  /* Bottom bar stacks vertically */
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;

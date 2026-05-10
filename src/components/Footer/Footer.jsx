@@ -111,7 +111,7 @@ const Footer = () => {
                     MIDDLE SECTION: Navigation Links
                     3 columns on desktop, stacked on mobile
                     ============================================ */}
-            <nav className="footer-links" aria-label="Footer navigation">
+            <nav className="footer-nav" aria-label="Footer navigation">
               {linkColumns.map((column, colIndex) => (
                 <ul key={colIndex} className="link-column">
                   {column.links.map((link) => (
