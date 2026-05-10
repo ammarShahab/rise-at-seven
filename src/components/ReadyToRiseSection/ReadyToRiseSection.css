@@ -137,6 +137,12 @@
   }
 }
 
+@media (max-width: 768px) {
+  #ready-to-rise-section {
+    display: none;
+  }
+}
+
 /* ============================================
    REDUCED MOTION (Accessibility)
    ============================================ */
