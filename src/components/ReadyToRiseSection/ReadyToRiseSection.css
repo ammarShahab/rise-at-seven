@@ -1,0 +1,146 @@
+/**
+ * CinematicText Styles
+ * 
+ * Clean, minimal styling that matches the reference image:
+ * - Light background (#f0eeeb)
+ * - Bold, large sans-serif typography
+ * - Full viewport height section
+ * - Responsive across all breakpoints
+ */
+
+/* CSS Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 
+  Cinematic Section
+  - Full viewport height for scroll triggering
+  - Light warm gray background matching reference
+  - Flex centering for the text
+*/
+.cinematic-section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0eeeb; /* Warm light gray from reference */
+  position: relative;
+  overflow: hidden; /* Prevent scrollbars during animation */
+}
+
+/* 
+  Container for the text
+  - Centers content horizontally
+  - Provides padding for mobile
+*/
+.cinematic-container {
+  width: 100%;
+  max-width: 1800px;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 
+  Text Wrapper
+  - Contains all animated letters
+  - Uses flex-wrap to handle long text on mobile
+  - Large bold typography matching reference
+*/
+.text-wrapper {
+  font-size: clamp(
+    3rem,
+    10vw,
+    8rem
+  ); /* Responsive: 3rem mobile → 8rem desktop */
+  font-weight: 700; /* Bold weight matching reference */
+  line-height: 1.1;
+  letter-spacing: -0.02em; /* Slight tight tracking like reference */
+  color: #111111; /* Near-black for strong contrast */
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+}
+
+/* 
+  Individual Animated Letter
+  - inline-block allows transform animations
+  - will-change optimizes GPU rendering
+  - transform-origin ensures rotation feels natural
+*/
+.animated-letter {
+  display: inline-block;
+  will-change: transform, opacity;
+  transform-origin: center center;
+  white-space: pre; /* Preserve spacing */
+}
+
+/* 
+  Space Character Handling
+  - Non-breaking space for consistent spacing
+  - Width matches font metrics
+*/
+.animated-letter.space {
+  width: 0.3em; /* Approximate space width */
+}
+
+/* 
+  Screen Reader Only
+  - Visually hidden but accessible to assistive tech
+  - Ensures SEO and accessibility compliance
+*/
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 
+  Responsive Adjustments
+  - Tablet: Slightly smaller text
+*/
+@media (max-width: 768px) {
+  .cinematic-container {
+    padding: 0 1rem;
+  }
+
+  .text-wrapper {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+    line-height: 1.15;
+  }
+}
+
+/* 
+  Mobile: Compact spacing
+*/
+@media (max-width: 480px) {
+  .text-wrapper {
+    font-size: clamp(2rem, 14vw, 3rem);
+    letter-spacing: -0.01em;
+  }
+}
+
+/* 
+  Reduced Motion Support
+  - Respects user preference for reduced motion
+  - Immediately shows final state without animation
+*/
+@media (prefers-reduced-motion: reduce) {
+  .animated-letter {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
