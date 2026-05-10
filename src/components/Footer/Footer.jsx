@@ -12,6 +12,7 @@
  * - Bottom legal bar
  */
 
+import SlideButton from "../SlideButton/SlideButton";
 import "./Footer.css";
 
 const Footer = () => {
@@ -116,9 +117,13 @@ const Footer = () => {
                 <ul key={colIndex} className="link-column">
                   {column.links.map((link) => (
                     <li key={link}>
-                      <a href="#" className="footer-link">
-                        {link}
-                      </a>
+                      <SlideButton
+                        text={link}
+                        href="#"
+                        variant="ghost"
+                        showArrow={false}
+                        className="footer-slide-btn"
+                      />
                     </li>
                   ))}
                 </ul>

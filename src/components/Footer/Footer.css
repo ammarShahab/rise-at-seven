@@ -342,6 +342,40 @@
 }
 
 /* ============================================
+   FOOTER SLIDE BUTTON OVERRIDES
+   Smaller text, no arrow, tight spacing
+   ============================================ */
+
+.footer-slide-btn {
+  font-size: 14px; /* Smaller than default 14px/0.875rem */
+  font-weight: 400; /* Match footer-link weight */
+  height: auto; /* Let content define height */
+  padding: 0; /* Remove default button padding */
+  color: #ffffff; /* Ensure white text on dark footer */
+}
+
+.footer-slide-btn:hover {
+  color: #ffffff;
+}
+
+/* Remove extra gap when arrow is hidden */
+.footer-slide-btn .slide-button__content,
+.footer-slide-btn .slide-button__original,
+.footer-slide-btn .slide-button__clone {
+  gap: 0;
+}
+
+/* Tighten line-height to match footer-link spacing */
+.footer-slide-btn .slide-button__text {
+  line-height: 1.6;
+}
+
+/* Ensure mask doesn't add unwanted height */
+.footer-slide-btn .slide-button__mask {
+  padding: 0;
+}
+
+/* ============================================
    REDUCED MOTION
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
