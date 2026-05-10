@@ -1,0 +1,357 @@
+/**
+ * ==============   Footer Styles   ================
+ *
+ * Premium dark footer for "Rise at Seven" agency.
+ * Matches reference designs for desktop and mobile.
+ *
+ * Color palette:
+ * - Background: #111111 (near-black)
+ * - Text primary: #ffffff
+ * - Text muted: #888888
+ * - Input background: #1a1a1a
+ * - Accent: #a8e6cf (mint arrow button)
+ */
+
+/* ============================================
+   FOOTER BASE
+   ============================================ */
+.footer {
+  width: 100%;
+  background-color: #111111;
+  color: #ffffff;
+  padding: 48px 0 24px;
+  border-radius: 20px;
+}
+
+.footer-inner {
+  max-width: 1900px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ============================================
+   NEWSLETTER SECTION
+   ============================================ */
+.footer-top {
+  margin-bottom: 48px;
+}
+
+.footer-top-inner {
+  display: flex;
+  /* justify-content: ; */
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.footer-links {
+  flex: 1;
+}
+
+.newsletter {
+  flex: 1;
+}
+
+.newsletter-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.01em;
+}
+
+.newsletter-form {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  max-width: 1280px;
+  background-color: #1a1a1a;
+  border-radius: 100px;
+  padding: 4px;
+  padding-left: 20px;
+}
+
+.newsletter-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  padding: 10px 0;
+}
+
+.newsletter-input::placeholder {
+  color: #888888;
+}
+
+.newsletter-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #a8e6cf;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #111111;
+  flex-shrink: 0;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.newsletter-btn:hover {
+  transform: scale(1.05);
+  background-color: #96d4bd;
+}
+
+/* ============================================
+   SOCIAL ICONS
+   Small pill buttons with arrow icons
+   ============================================ */
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background-color: #1a1a1a;
+  border-radius: 100px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.social-pill:hover {
+  background-color: #2a2a2a;
+}
+
+.social-arrow {
+  opacity: 0.6;
+}
+
+/* ============================================
+   NAVIGATION LINKS
+   3-column grid on desktop
+   ============================================ */
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 64px;
+}
+
+.link-column {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.link-column li {
+  margin-bottom: 8px;
+}
+
+.footer-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  transition: opacity 0.2s ease;
+}
+
+.footer-link:hover {
+  opacity: 0.6;
+}
+
+/* ============================================
+   BRAND MARK
+   Massive "Rise at Seven®" text
+   ============================================ */
+.footer-brand {
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+
+.brand-text {
+  font-size: clamp(64px, 14vw, 400px);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 0.9;
+  letter-spacing: -0.003em;
+  display: block;
+  white-space: nowrap;
+}
+
+.brand-reg {
+  font-size: 0.25em;
+  font-weight: 400;
+  vertical-align: super;
+  margin-left: 4px;
+  display: inline-block;
+  /* border: 2px solid #ffffff; */
+  border-radius: 50%;
+  width: 1.2em;
+  height: 1.2em;
+  line-height: 1.1em;
+  text-align: center;
+}
+
+/* ============================================
+   BOTTOM BAR
+   Copyright + legal links
+   ============================================ */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 24px;
+  border-top: 1px solid #222222;
+}
+
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #888888;
+  line-height: 1.6;
+}
+
+.dot-separator {
+  color: #555555;
+  font-size: 10px;
+}
+
+.legal-link {
+  color: #888888;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.legal-link:hover {
+  color: #ffffff;
+}
+
+.credit-link {
+  font-size: 11px;
+  color: #888888;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 24px;
+}
+
+.credit-link:hover {
+  color: #ffffff;
+}
+
+/* ============================================
+   RESPONSIVE: TABLET
+   ============================================ */
+@media (max-width: 900px) {
+  .footer-inner {
+    padding: 0 32px;
+  }
+
+  .brand-text {
+    font-size: clamp(56px, 16vw, 120px);
+  }
+}
+
+/* ============================================
+   RESPONSIVE: MOBILE
+   Matches the right-side reference image
+   ============================================ */
+@media (max-width: 640px) {
+  .footer {
+    padding: 32px 0 20px;
+  }
+
+  .footer-inner {
+    padding: 0 20px;
+  }
+
+  .footer-top {
+    margin-bottom: 32px;
+  }
+
+  .newsletter-title {
+    font-size: 18px;
+  }
+
+  .newsletter-form {
+    max-width: 100%;
+  }
+
+  /* Links: 2-column grid for first 2 columns, then full width */
+  .footer-links {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 32px;
+    margin-bottom: 32px;
+  }
+
+  /* Third column (locations) spans full width below */
+  .link-column:nth-child(3) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 32px;
+  }
+
+  .link-column:nth-child(3) li {
+    margin-bottom: 6px;
+  }
+
+  .footer-link {
+    font-size: 13px;
+  }
+
+  /* Brand text smaller on mobile */
+  .brand-text {
+    font-size: clamp(42px, 14vw, 72px);
+    line-height: 0.95;
+  }
+
+  /* Bottom bar stacks vertically */
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .footer-legal {
+    font-size: 10px;
+    line-height: 1.8;
+  }
+
+  .credit-link {
+    margin-left: 0;
+    font-size: 10px;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .newsletter-btn,
+  .footer-link,
+  .legal-link,
+  .credit-link,
+  .social-pill {
+    transition: none;
+  }
+}
