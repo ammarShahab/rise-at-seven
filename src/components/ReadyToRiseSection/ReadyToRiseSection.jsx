@@ -30,7 +30,8 @@ export default function ReadyToRiseSection() {
   const x = useTransform(scrollYProgress, [0, 1], [0, -totalDistance]);
 
   return (
-    <div id="example">
+    <div id="ready-to-rise-section">
+      {" "}
       {/* Main scroll-driven horizontal container */}
       <div ref={containerRef} className="scroll-container">
         <div className="sticky-wrapper">
@@ -44,7 +45,6 @@ export default function ReadyToRiseSection() {
                 }}
               >
                 <div className="item-content">
-                  {/* <span className="item-number">0{word.id}</span> */}
                   <h2>{word.text}</h2>
                 </div>
               </div>

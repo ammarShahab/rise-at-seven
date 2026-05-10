@@ -9,7 +9,7 @@
 /* Prevent horizontal scrollbar from off-screen motion elements */
 
 /* Root wrapper */
-#example {
+#ready-to-rise-section {
   height: auto;
   overflow: visible;
 }
@@ -55,20 +55,12 @@
    ============================================ */
 .gallery-item {
   flex-shrink: 0;
-  /* width: 400px; */
-  /* height: 500px; */
-  /* border-radius: 12px; */
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Subtle gradient background instead of image */
-  /* background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08); */
 }
-
 /* Color overlay using the item's theme color */
 .gallery-item::before {
   content: "";
@@ -114,11 +106,9 @@
 .gallery-item h2 {
   font-size: 15rem;
   font-weight: 700;
-  /* color: #f5f5f5; */
   margin: 0;
   letter-spacing: -0.03em;
   line-height: 1;
-  /* text-transform: uppercase; */
 }
 
 /* ============================================
