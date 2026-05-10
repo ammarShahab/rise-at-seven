@@ -1,146 +1,169 @@
 /**
- * CinematicText Styles
- * 
- * Clean, minimal styling that matches the reference image:
- * - Light background (#f0eeeb)
- * - Bold, large sans-serif typography
- * - Full viewport height section
- * - Responsive across all breakpoints
+ * ==============   ScrollHorizontal Styles   ================
+ *
+ * Separated from the JSX for cleaner component structure.
+ * Handles layout, sticky scroll behavior, text card styling,
+ * and responsive breakpoints.
  */
 
-/* CSS Reset & Base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Prevent horizontal scrollbar from off-screen motion elements */
+
+/* Root wrapper */
+#example {
+  height: auto;
+  overflow: visible;
 }
 
-/* 
-  Cinematic Section
-  - Full viewport height for scroll triggering
-  - Light warm gray background matching reference
-  - Flex centering for the text
-*/
-.cinematic-section {
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f0eeeb; /* Warm light gray from reference */
-  position: relative;
-  overflow: hidden; /* Prevent scrollbars during animation */
-}
-
-/* 
-  Container for the text
-  - Centers content horizontally
-  - Provides padding for mobile
-*/
-.cinematic-container {
-  width: 100%;
-  max-width: 1800px;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* 
-  Text Wrapper
-  - Contains all animated letters
-  - Uses flex-wrap to handle long text on mobile
-  - Large bold typography matching reference
-*/
-.text-wrapper {
-  font-size: clamp(
-    3rem,
-    10vw,
-    8rem
-  ); /* Responsive: 3rem mobile → 8rem desktop */
-  font-weight: 700; /* Bold weight matching reference */
-  line-height: 1.1;
-  letter-spacing: -0.02em; /* Slight tight tracking like reference */
-  color: #111111; /* Near-black for strong contrast */
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+/* ============================================
+   SCROLL CONTAINER
+   Tall element that drives the scroll progress
+   ============================================ */
+.scroll-container {
+  height: 300vh;
   position: relative;
 }
 
-/* 
-  Individual Animated Letter
-  - inline-block allows transform animations
-  - will-change optimizes GPU rendering
-  - transform-origin ensures rotation feels natural
-*/
-.animated-letter {
-  display: inline-block;
-  will-change: transform, opacity;
-  transform-origin: center center;
-  white-space: pre; /* Preserve spacing */
+/* ============================================
+   STICKY WRAPPER
+   Sticks to viewport top and acts as the window
+   through which horizontal text slides
+   ============================================ */
+.sticky-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: visible;
 }
 
-/* 
-  Space Character Handling
-  - Non-breaking space for consistent spacing
-  - Width matches font metrics
-*/
-.animated-letter.space {
-  width: 0.3em; /* Approximate space width */
+/* ============================================
+   GALLERY (Horizontal Text Track)
+   ============================================ */
+.gallery {
+  display: flex;
+  /* gap: 30px; */
+  will-change: transform;
 }
 
-/* 
-  Screen Reader Only
-  - Visually hidden but accessible to assistive tech
-  - Ensures SEO and accessibility compliance
-*/
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
+/* ============================================
+   GALLERY ITEM (Text Card)
+   Each word displayed in a styled card
+   ============================================ */
+.gallery-item {
+  flex-shrink: 0;
+  /* width: 400px; */
+  /* height: 500px; */
+  /* border-radius: 12px; */
+  position: relative;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Subtle gradient background instead of image */
+  /* background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08); */
 }
 
-/* 
-  Responsive Adjustments
-  - Tablet: Slightly smaller text
-*/
-@media (max-width: 768px) {
-  .cinematic-container {
-    padding: 0 1rem;
+/* Color overlay using the item's theme color */
+.gallery-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, var(--item-color));
+  opacity: 0.35;
+  mix-blend-mode: screen;
+}
+
+/* Decorative accent line at top */
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--item-color);
+  opacity: 0.8;
+}
+
+/* ============================================
+   ITEM CONTENT (Text inside card)
+   ============================================ */
+.item-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 10px;
+}
+
+.item-number {
+  font-size: 14px;
+  color: var(--item-color);
+  display: block;
+  margin-bottom: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* The actual word - large and bold */
+.gallery-item h2 {
+  font-size: 15rem;
+  font-weight: 700;
+  /* color: #f5f5f5; */
+  margin: 0;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  /* text-transform: uppercase; */
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+@media (max-width: 600px) {
+  .sticky-wrapper {
+    width: 280px;
   }
 
-  .text-wrapper {
-    font-size: clamp(2.5rem, 12vw, 4rem);
-    line-height: 1.15;
+  .gallery {
+    gap: 15px;
+  }
+
+  .gallery-item {
+    width: 280px;
+    height: 350px;
+  }
+
+  .gallery-item h2 {
+    font-size: 42px;
+  }
+
+  .item-content {
+    padding: 20px;
   }
 }
 
-/* 
-  Mobile: Compact spacing
-*/
-@media (max-width: 480px) {
-  .text-wrapper {
-    font-size: clamp(2rem, 14vw, 3rem);
-    letter-spacing: -0.01em;
-  }
-}
-
-/* 
-  Reduced Motion Support
-  - Respects user preference for reduced motion
-  - Immediately shows final state without animation
-*/
+/* ============================================
+   REDUCED MOTION (Accessibility)
+   ============================================ */
 @media (prefers-reduced-motion: reduce) {
-  .animated-letter {
+  .gallery {
     transform: none !important;
-    opacity: 1 !important;
+  }
+
+  .scroll-container {
+    height: auto;
+  }
+
+  .sticky-wrapper {
+    position: relative;
+    height: auto;
+    width: 100%;
+    overflow-x: auto;
+    padding: 50px 0;
   }
 }
