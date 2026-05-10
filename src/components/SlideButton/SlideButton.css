@@ -161,3 +161,14 @@
     height: 10px;
   }
 }
+
+/* ============================================
+   NO-ARROW MODIFIER
+   Removes gap when arrow is hidden
+   ============================================ */
+
+.slide-button--no-arrow .slide-button__content,
+.slide-button--no-arrow .slide-button__original,
+.slide-button--no-arrow .slide-button__clone {
+  gap: 0;
+}

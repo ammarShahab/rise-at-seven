@@ -25,13 +25,15 @@ function ArrowIcon() {
   );
 }
 
-function ContentBlock({ text }) {
+function ContentBlock({ text, showArrow }) {
   return (
     <span className="slide-button__content">
       <span className="slide-button__text">{text}</span>
-      <span className="slide-button__arrow" aria-hidden="true">
-        <ArrowIcon />
-      </span>
+      {showArrow && (
+        <span className="slide-button__arrow" aria-hidden="true">
+          <ArrowIcon />
+        </span>
+      )}
     </span>
   );
 }
@@ -44,17 +46,19 @@ function ContentBlock({ text }) {
  * SlideButton — Reusable hover slide animation
  *
  * Props:
- *   text      {string}  Button label
- *   href      {string}  Link destination
- *   variant   {string}  "light" | "dark" | "accent" | "ghost"
- *   ghost     {boolean} If true: transparent bg, no radius morph, slide only
- *   className {string}  Extra CSS classes
+ *   text       {string}  Button label
+ *   href       {string}  Link destination
+ *   variant    {string}  "light" | "dark" | "accent" | "ghost"
+ *   ghost      {boolean} If true: transparent bg, no radius morph, slide only
+ *   showArrow  {boolean} Show/hide the arrow icon (default: true)
+ *   className  {string}  Extra CSS classes
  */
 function SlideButton({
   text,
   href,
   variant = "light",
   ghost = false,
+  showArrow = true, // ← NEW PROP
   className = "",
 }) {
   const buttonRef = useRef(null);
@@ -71,42 +75,25 @@ function SlideButton({
 
     tlRef.current = gsap.timeline();
 
-    /* ── FILLED-ONLY: Border-radius morph ── */
     if (!ghost) {
       tlRef.current.to(
         button,
-        {
-          borderRadius: "12px",
-          duration: 0.12,
-          ease: "power2.out",
-        },
+        { borderRadius: "12px", duration: 0.12, ease: "power2.out" },
         0,
       );
     }
 
-    /* ── SLIDE: Original exits upward ── */
     tlRef.current.to(
       original,
-      {
-        y: "-100%",
-        opacity: 0,
-        duration: 0.15,
-        ease: "power2.in",
-      },
+      { y: "-100%", opacity: 0, duration: 0.15, ease: "power2.in" },
       0,
     );
 
-    /* ── SLIDE: Clone enters from below ── */
     tlRef.current.fromTo(
       clone,
       { y: "100%", opacity: 0 },
-      {
-        y: "0%",
-        opacity: 1,
-        duration: 0.16,
-        ease: "power2.out",
-      },
-      0.3, // gap before clone appears
+      { y: "0%", opacity: 1, duration: 0.16, ease: "power2.out" },
+      0.3,
     );
   }, [ghost]);
 
@@ -115,33 +102,34 @@ function SlideButton({
     tlRef.current.reverse();
   }, []);
 
-  /* Cleanup on unmount */
   useEffect(() => {
     return () => {
       if (tlRef.current) tlRef.current.kill();
     };
   }, []);
 
-  /* Build class list: variant + ghost modifier */
   const variantClass = ghost
     ? `slide-button--ghost slide-button--${variant}`
     : `slide-button--${variant}`;
+
+  /* Add modifier class when arrow is hidden */
+  const arrowClass = showArrow ? "" : "slide-button--no-arrow";
 
   return (
     <a
       ref={buttonRef}
       href={href}
-      className={`slide-button ${variantClass} ${className}`}
+      className={`slide-button ${variantClass} ${arrowClass} ${className}`}
       aria-label={text}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <span className="slide-button__mask">
         <span ref={originalRef} className="slide-button__original">
-          <ContentBlock text={text} />
+          <ContentBlock text={text} showArrow={showArrow} />
         </span>
         <span ref={cloneRef} className="slide-button__clone">
-          <ContentBlock text={text} />
+          <ContentBlock text={text} showArrow={showArrow} />
         </span>
       </span>
     </a>
