@@ -114,7 +114,7 @@ const DesktopCard = ({ card, index, totalCards, scrollYProgress }) => {
       index * 20, // hold
       index * 30, // hold
       -index * 10 - 30, // start moving up
-      -600, // exit off screen
+      -800, // exit off screen
     ],
   );
 

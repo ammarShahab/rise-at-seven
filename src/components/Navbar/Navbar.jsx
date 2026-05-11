@@ -38,17 +38,6 @@ function Navbar() {
     { href: "#webinar", label: "Webinar" },
   ];
 
-  // GSAP entrance animation on mount
-  /*  useGSAP(() => {
-    gsap.from(".navbar", {
-      y: -200,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-      delay: 0.1, // Add a delay of 0.1 seconds
-    });
-  }, []); */
-
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
   };

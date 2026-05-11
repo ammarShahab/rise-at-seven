@@ -4,7 +4,7 @@
 
 .navbar {
   position: fixed;
-  top: 0;
+  top: 10px;
   left: 0;
   right: 0;
   z-index: 1000;
@@ -29,7 +29,7 @@
 
 /* Hidden state — slides up when scrolling down */
 .navbar.is-hidden {
-  transform: translateY(-100%);
+  transform: translateY(-120%);
 }
 
 /* Logo */
