@@ -1,55 +1,31 @@
-/* Hide default cursor on fine pointer devices when hovering interactive areas */
-@media (pointer: fine) {
-  [data-cursor-hover] {
-    cursor: none;
-  }
+/* ---------------------------------------------------------------------------
+   CSS Variables
+   --------------------------------------------------------------------------- */
+:root {
+  --fw-bg: #0a0a0a;
+  --fw-text: #ffffff;
+  --fw-radius: 24px;
+  --cursor-size: 64px;
 }
 
 /* ---------------------------------------------------------------------------
-   Custom Cursor
+   Scroll Track & Pinned Section
    --------------------------------------------------------------------------- */
-.cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: var(--cursor-size);
-  height: var(--cursor-size);
-  margin-left: calc(var(--cursor-size) / -2);
-  margin-top: calc(var(--cursor-size) / -2);
-  border: 1.5px solid rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: difference;
-  will-change: transform;
-}
-
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: var(--cursor-dot-size);
-  height: var(--cursor-dot-size);
-  margin-left: calc(var(--cursor-dot-size) / -2);
-  margin-top: calc(var(--cursor-dot-size) / -2);
-  background: #fff;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: difference;
-  will-change: transform;
-}
-
-/* ---------------------------------------------------------------------------
-   Featured Work Section
-   --------------------------------------------------------------------------- */
-.featured-work {
+.featured-work-wrapper {
   position: relative;
+}
+
+.featured-work {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* LOCKED to viewport */
   background: var(--fw-bg);
   color: var(--fw-text);
-  min-height: 100vh;
-  padding: 10vh 4vw;
-  overflow: hidden;
+  overflow: hidden; /* Contain all animated children */
+  border-radius: var(--fw-radius);
+  z-index: 10;
 }
 
 .featured-work__inner {
@@ -58,94 +34,129 @@
   gap: 4vw;
   max-width: 1600px;
   margin: 0 auto;
-  align-items: start;
+  height: 100%;
+  padding: 10vh 4vw;
+  align-items: center;
 }
 
 /* ---------------------------------------------------------------------------
-   Left Column
+   Custom Cursor
+   --------------------------------------------------------------------------- */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  border-radius: 50%;
+  background-color: #a7f3d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform, opacity;
+}
+
+.custom-cursor svg {
+  width: 20px;
+  height: 20px;
+  color: #064e3b;
+}
+
+/* Hide custom cursor on coarse/touch devices */
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Left Column: Text Stack
    --------------------------------------------------------------------------- */
 .featured-work__left {
-  position: sticky;
-  top: 15vh;
-  align-self: start;
+  position: relative;
+  height: 100%;
+  overflow: hidden; /* Clip text that leaves the viewport */
 }
 
 .fw-label {
+  position: absolute;
+  top: 0;
+  left: 0;
   font-size: clamp(0.875rem, 1vw, 1rem);
   font-weight: 500;
   letter-spacing: -0.02em;
-  margin-bottom: 4rem;
-  opacity: 0; /* animated in by GSAP */
+  margin: 0;
+  opacity: 0.8;
+  z-index: 20;
 }
 
 .projects-list {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Each text item is absolutely centered and translated by Framer Motion */
+.project-text-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-}
-
-.project-item {
-  position: relative;
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  transition: border-color 0.3s;
-}
-
-.project-item:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.project-item:focus,
-.project-item:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.5);
-  outline-offset: -2px;
-  border-color: rgba(255, 255, 255, 0.3);
+  justify-content: center;
+  align-items: flex-start;
+  pointer-events: none; /* Let scroll pass through; visual only */
+  will-change: transform, opacity;
 }
 
 .proj-title {
-  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-size: clamp(2.5rem, 5vw, 5.5rem);
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: -0.04em;
   margin: 0;
-  opacity: 0.25; /* GSAP overrides this */
-  will-change: transform, opacity;
+  color: var(--fw-text);
 }
 
 .proj-year {
   font-size: 0.75rem;
   font-weight: 500;
-  opacity: 0.25;
   letter-spacing: 0.05em;
-  transform: translateY(-0.5em);
+  opacity: 0.7;
+  margin-top: 0.5rem;
+  color: var(--fw-text);
 }
 
 /* ---------------------------------------------------------------------------
-   Right Column: Cards Stack
+   Right Column: Image Stack
    --------------------------------------------------------------------------- */
 .featured-work__right {
   position: relative;
+  height: 100%;
+  overflow: hidden; /* Clip images that leave the viewport */
 }
 
 .cards-stack {
-  display: flex;
-  flex-direction: column;
-  gap: var(--fw-gap);
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .image-card {
-  position: relative;
+  position: absolute;
+  inset: 0;
   border-radius: var(--fw-radius);
   overflow: hidden;
-  aspect-ratio: 4 / 3;
   background: #141414;
-  transform: translateZ(0); /* promote to composite layer */
+  transform: translateZ(0); /* Promote to composite layer */
+  will-change: transform, opacity;
 }
 
-/* Base grayscale image */
+/* Grayscale base */
 .img-grayscale {
   position: absolute;
   inset: 0;
@@ -153,17 +164,14 @@
   height: 100%;
   object-fit: cover;
   filter: grayscale(100%) brightness(0.35);
-  transform: scale(1.1);
-  transition: none; /* GSAP handles animation */
 }
 
-/* Color reveal container */
+/* Color reveal container: clipped by Framer Motion */
 .img-color-reveal {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  /* clip-path animated by GSAP: inset(0 0 100% 0) -> inset(0 0 0% 0) */
   will-change: clip-path;
 }
 
@@ -171,7 +179,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.05);
 }
 
 /* ---------------------------------------------------------------------------
@@ -222,7 +229,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #b8f5d9; /* mint accent from reference */
+  background: #b8f5d9;
   color: #0a0a0a;
   display: flex;
   align-items: center;
@@ -230,31 +237,10 @@
 }
 
 /* ---------------------------------------------------------------------------
-   Next Section (for auto-reveal demo)
+   Mobile Project Meta (hidden on desktop)
    --------------------------------------------------------------------------- */
-.next-section {
-  min-height: 100vh;
-  background: #f4f4f5;
-  color: #0a0a0a;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 4rem;
-  will-change: transform, opacity;
-}
-
-.next-section h2 {
-  font-size: clamp(2rem, 4vw, 4rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  margin-bottom: 1rem;
-}
-
-.next-section p {
-  font-size: 1.125rem;
-  opacity: 0.6;
+.mobile-project-meta {
+  display: none;
 }
 
 /* ---------------------------------------------------------------------------
@@ -263,28 +249,52 @@
 @media (max-width: 900px) {
   .featured-work__inner {
     grid-template-columns: 1fr;
+    padding: 6vh 4vw;
   }
 
+  /* Hide desktop text column */
   .featured-work__left {
-    position: relative;
-    top: 0;
-  }
-
-  .proj-title {
-    font-size: clamp(2rem, 8vw, 3.5rem);
-  }
-
-  .image-card {
-    aspect-ratio: 16 / 10;
-  }
-
-  /* Disable custom cursor on touch devices */
-  .cursor-ring,
-  .cursor-dot {
     display: none;
   }
 
-  [data-cursor-hover] {
-    cursor: pointer;
+  /* Full-bleed image stack */
+  .featured-work__right {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-card {
+    border-radius: 16px;
+  }
+
+  /* Show text overlaid at bottom of image */
+  .mobile-project-meta {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+    color: #fff;
+    z-index: 5;
+  }
+
+  .mobile-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .mobile-year {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    letter-spacing: 0.05em;
+  }
+
+  /* Disable custom cursor */
+  .custom-cursor {
+    display: none;
   }
 }
