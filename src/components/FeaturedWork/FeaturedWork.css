@@ -298,3 +298,10 @@
     display: none;
   }
 }
+
+@media (pointer: fine) {
+  [data-cursor-hover],
+  .featured-work__right {
+    cursor: none;
+  }
+}

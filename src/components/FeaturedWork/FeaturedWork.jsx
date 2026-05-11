@@ -7,6 +7,7 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import "./FeaturedWork.css";
+import SlideButton from "../SlideButton/SlideButton";
 
 // ---------------------------------------------------------------------------
 // Data
@@ -284,6 +285,7 @@ const FeaturedWork = () => {
             {/* RIGHT: Image column */}
             <div
               className="featured-work__right"
+              data-cursor-hover
               onMouseEnter={() => setCursorVisible(true)}
               onMouseLeave={() => setCursorVisible(false)}
             >
@@ -302,6 +304,7 @@ const FeaturedWork = () => {
             </div>
           </div>
         </section>
+        <SlideButton text="Explore More Work" href="#work" />
       </div>
     </>
   );
