@@ -123,9 +123,9 @@ const DesktopCard = ({ card, index, totalCards, scrollYProgress }) => {
     scrollYProgress,
     [0, cardStart, cardMid, cardEnd, cardExit],
     [
-      (totalCards - 1 - index) * 2.5 - 1, // initial fanned rotation
-      (totalCards - 1 - index) * 2.5 - 1, // hold
-      (totalCards - 1 - index) * 1.5, // start straightening
+      (totalCards - 1 - index) * 4.5 - 1, // initial fanned rotation
+      (totalCards - 1 - index) * 3.5 - 1, // hold
+      (totalCards - 1 - index) * 2.5, // start straightening
       -index * 1, // more straight
       -15, // rotate on exit
     ],

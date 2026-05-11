@@ -25,6 +25,9 @@
   text-align: center;
   position: relative;
   z-index: 2;
+  width: 100%; /* ✅ add */
+  height: 100%; /* ✅ add */
+  justify-content: center; /* ✅ add — vertically centers content */
 }
 
 .pioneers-card-image-wrapper {
@@ -96,10 +99,11 @@
     justify-content: center;
   }
 
+  /* Desktop card — fixed size */
   .pioneers-card {
     position: absolute;
-    width: 100%;
-    max-width: 620px;
+    width: 520px; /* fixed width, not max-width */
+    height: 560px; /* fixed height */
     border-radius: 28px;
     padding: 48px 36px;
     box-shadow:
@@ -108,6 +112,10 @@
       0 20px 25px -5px rgba(0, 0, 0, 0.05);
     will-change: transform;
     overflow: hidden;
+    /* Center content vertically inside fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Hide mobile elements on desktop */
@@ -164,12 +172,15 @@
     cursor: grabbing;
   }
 
+  /* Mobile card — fixed size */
   .pioneers-mobile-card {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* ✅ add this */
     flex-shrink: 0;
     width: 320px;
+    height: 480px; /* ✅ add fixed height */
     border-radius: 24px;
     padding: 36px 24px;
     box-shadow:
