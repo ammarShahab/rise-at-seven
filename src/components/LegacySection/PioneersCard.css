@@ -110,17 +110,6 @@
     overflow: hidden;
   }
 
-  /* Solid background layer - completely opaque */
-  .pioneers-card-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    border-radius: 28px;
-  }
-
   /* Hide mobile elements on desktop */
   .pioneers-mobile,
   .pioneers-mobile-slider-wrapper,
