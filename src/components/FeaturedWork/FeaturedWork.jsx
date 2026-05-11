@@ -116,7 +116,7 @@ const ProjectTextItem = ({ project, index, progress, total, activeIndex }) => {
   const distance = useTransform(progress, (v) => v * (total - 1) - index);
 
   // Vertical parallax: items flow through the viewport center
-  const y = useTransform(distance, [-1.5, 0, 1.5], ["-45vh", "0vh", "45vh"]);
+  const y = useTransform(distance, [-1.5, 0, 1.5], ["-30vh", "0vh", "30vh"]);
   const opacity = useTransform(
     distance,
     [-1.2, -0.5, 0, 0.5, 1.2],
@@ -131,6 +131,8 @@ const ProjectTextItem = ({ project, index, progress, total, activeIndex }) => {
     <motion.div
       className="project-text-item"
       style={{ y, opacity, scale, zIndex }}
+      whileHover={{ x: 16 }}
+      transition={{ duration: 0.1, ease: "easeOut" }}
     >
       <h3 className="proj-title">{project.title}</h3>
       <span className="proj-year">{project.year}</span>

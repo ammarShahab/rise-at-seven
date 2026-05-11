@@ -109,7 +109,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  pointer-events: none; /* Let scroll pass through; visual only */
+  pointer-events: auto; /* was: pointer-events: none */
   will-change: transform, opacity;
 }
 
