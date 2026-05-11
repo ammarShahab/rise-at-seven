@@ -110,21 +110,24 @@ const DesktopCard = ({ card, index, totalCards, scrollYProgress }) => {
     scrollYProgress,
     [0, cardStart, cardMid, cardEnd, cardExit],
     [
-      index * 30, // initial stacked offset
-      index * 30, // hold
+      index * 20, // initial stacked offset
+      index * 20, // hold
       index * 30, // hold
       -index * 10 - 30, // start moving up
-      -800, // exit off screen
+      -600, // exit off screen
     ],
   );
 
   // Rotation: subtle initial tilt, straightens, then rotates on exit
+  const initialRotations = [6, 10, 16]; // card 0, card 1, card 2
+  const holdRotations = [5, -2, 12]; // tweak these too if needed
+
   const rotate = useTransform(
     scrollYProgress,
     [0, cardStart, cardMid, cardEnd, cardExit],
     [
-      (totalCards - 1 - index) * 4.5 - 1, // initial fanned rotation
-      (totalCards - 1 - index) * 3.5 - 1, // hold
+      initialRotations[index], // initial fanned rotation
+      holdRotations[index], // hold
       (totalCards - 1 - index) * 2.5, // start straightening
       -index * 1, // more straight
       -15, // rotate on exit
