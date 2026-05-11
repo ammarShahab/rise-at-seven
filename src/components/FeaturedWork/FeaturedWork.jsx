@@ -306,7 +306,10 @@ const FeaturedWork = () => {
             </div>
           </div>
         </section>
-        <SlideButton text="Explore More Work" href="#work" />
+      </div>
+      {/* CTA appears naturally after the sticky track ends */}
+      <div className="featured-work-cta">
+        <SlideButton text="Explore Our Work" href="#work" />
       </div>
     </>
   );

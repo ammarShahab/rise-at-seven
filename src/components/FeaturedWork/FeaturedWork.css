@@ -6,6 +6,7 @@
   --fw-text: #ffffff;
   --fw-radius: 24px;
   --cursor-size: 64px;
+  --cta-bg: #ebebeb;
 }
 
 /* ---------------------------------------------------------------------------
@@ -303,5 +304,32 @@
   [data-cursor-hover],
   .featured-work__right {
     cursor: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Post-Section CTA
+   --------------------------------------------------------------------------- */
+.featured-work-cta {
+  position: relative;
+  z-index: 20; /* sits above the releasing sticky section */
+  background: var(--cta-bg);
+  padding: 8vh 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ---------------------------------------------------------------------------
+   Responsive
+   --------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .featured-work-cta {
+    padding: 6vh 1.5rem;
+  }
+
+  .featured-work-cta .slide-button {
+    width: 100%;
+    justify-content: center;
   }
 }

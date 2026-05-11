@@ -1,6 +1,7 @@
 :root {
   --pioneers-bg: #ebebeb;
   --pioneers-card-bg: #000000;
+  --pioneers-card_3-bg: #dcdcdced;
   --pioneers-text: #ffffff;
   --pioneers-mint: #b8f5d9;
   --pioneers-radius: 28px;
@@ -12,8 +13,8 @@
 .pioneers-section {
   /*  position: relative;
   width: 100%;
-  background: var(--pioneers-bg);
   height: 100svh;*/
+  background: var(--pioneers-bg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,31 +52,6 @@
 /* ---------------------------------------------------------------------------
    Main Card
    --------------------------------------------------------------------------- */
-
-.card-stack {
-  /*  position: absolute;
-  width: 100%;
-  height: 100svh;
-  overflow: hidden;
-  transform-style: preserve-3d;
-  perspective: 1000px; */
-}
-
-/* .card {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  height: 100%;
-  border-radius: var(--pioneers-radius);
-  transform: rotate(2deg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem 2.5rem;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25);
-  transform: translate(-50%, 50%);
-  backface-visibility: hidden;
-} */
 
 .card {
   position: relative;
@@ -117,7 +93,7 @@
   background-color: var(--pioneers-mint);
 }
 .card#card-3 {
-  background-color: var(--pioneers-bg);
+  background-color: var(--pioneers-card_3-bg);
 }
 
 .card-inner {
