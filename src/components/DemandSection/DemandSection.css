@@ -70,11 +70,11 @@
   gap: 0.5rem;
   padding: 0.875rem 1.5rem;
   border-radius: 9999px;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  outline: none; /* Remove default outline for custom focus */
+  /*  font-size: 0.9375rem;
+  font-weight: 500; */
+  /* text-decoration: none; */
+  /* transition: all 0.3s ease; */
+  /* outline: none; */
 }
 
 .demand-section__btn:focus,
@@ -129,27 +129,47 @@
     gap: 2.5rem;
   }
 
-  .demand-section__left {
-    font-size: 1rem;
-    max-width: 100%;
+  /* Unwrap the right section so its children become direct flex items */
+  .demand-section__right {
+    display: contents;
   }
 
+  /* 1. Title + image at the TOP */
   .demand-section__title {
+    order: 1;
     font-size: clamp(2rem, 8vw, 3rem);
+    margin-bottom: 0;
+  }
+
+  /* 2. Left paragraph in the MIDDLE */
+  .demand-section__left {
+    order: 2;
+    font-size: 1rem;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* 3. Buttons at the BOTTOM */
+  .demand-section__buttons {
+    order: 3;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    align-items: stretch;
+    margin-top: 0.5rem;
+  }
+
+  .demand-section__buttons > * {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
   }
 
   .demand-section__image {
     width: 60px;
     height: 60px;
     border-radius: 12px;
-  }
-
-  .demand-section__buttons {
-    gap: 0.75rem;
-  }
-
-  .demand-section__btn {
-    padding: 0.75rem 1.25rem;
-    font-size: 0.875rem;
   }
 }
