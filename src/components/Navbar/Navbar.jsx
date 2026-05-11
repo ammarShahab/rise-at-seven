@@ -72,7 +72,7 @@ function Navbar() {
           <SlideButton
             text="Get in touch"
             href="#contact"
-            className="navbar__cta"
+            className={`navbar__cta ${isMobileMenuOpen ? "hidden-mobile" : ""}`}
           />
 
           {/* Mobile Menu Toggle */}
