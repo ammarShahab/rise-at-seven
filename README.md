@@ -21,7 +21,7 @@ A modern, scroll-aware React website featuring an advanced navbar with multi-dro
 
 - **React 18** — UI framework
 - **GSAP + @gsap/react** — Animations and scroll-driven effects
-- **Framer-Motion -  Animations and scroll-driven effects
+- **Framer Motion** -  Animations and scroll-driven effects
 - **CSS3** — Custom properties, backdrop-filter, transitions
 
 
