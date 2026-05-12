@@ -29,12 +29,13 @@ function Navbar() {
 
   // Navigation links data
   const navLinks = [
-    { href: "#services", label: "Services" },
-    { href: "#international", label: "International" },
-    { href: "#about", label: "About" },
+    { href: "#services", label: "Services+" },
+    { href: "#industries", label: "Industries+" },
+    { href: "#international", label: "International+" },
+    { href: "#about", label: "About+" },
     { href: "#work", label: "Work" },
     { href: "#careers", label: "Careers" },
-    { href: "#blogs", label: "Blogs" },
+    { href: "#blogs", label: "Blog & Resources" },
     { href: "#webinar", label: "Webinar" },
   ];
 

@@ -99,7 +99,7 @@ const DesktopCard = ({ card, index, totalCards, scrollYProgress }) => {
   // Card 0 (Pioneers): 0.00 - 0.33
   // Card 1 (Award):    0.33 - 0.66
   // Card 2 (Speed):    0.66 - 1.00
-  const segmentSize = 1 / totalCards;
+  /* const segmentSize = 1 / totalCards;
   const cardStart = index * segmentSize;
   const cardMid = cardStart + segmentSize * 0.4;
   const cardEnd = cardStart + segmentSize * 0.7;
@@ -115,6 +115,24 @@ const DesktopCard = ({ card, index, totalCards, scrollYProgress }) => {
       index * 30, // hold
       -index * 10 - 30, // start moving up
       -800, // exit off screen
+    ],
+  ); */
+
+  const segmentSize = 1 / totalCards;
+  const cardStart = index * segmentSize;
+  const cardMid = cardStart + segmentSize * 0.4;
+  const cardEnd = cardStart + segmentSize * 0.7;
+  const cardExit = cardStart + segmentSize * 1.0;
+
+  const y = useTransform(
+    scrollYProgress,
+    [0, cardStart, cardMid, cardEnd, cardExit],
+    [
+      index * 30,
+      index * 30,
+      index * 30,
+      -index * 10 - 30,
+      -800, // ← exit distance
     ],
   );
 
