@@ -4,12 +4,13 @@ import NavLink from "../NavLink/NavLink";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import ServicesDropdown from "../ServicesDropdown/ServicesDropdown";
 import IndustriesDropdown from "../IndustriesDropdown/IndustriesDropdown";
+import InternationalDropdown from "../InternationalDropdown/InternationalDropdown";
 import "./Navbar.css";
 import SlideButton from "../SlideButton/SlideButton";
 
 function Navbar({ onDropdownOpen }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null); // 'services' | 'industries' | null
+  const [activeDropdown, setActiveDropdown] = useState(null); // 'services' | 'industries' | 'international' | null
 
   const { direction, isPastThreshold, isPastHideThreshold } =
     useScrollDirection();
@@ -22,7 +23,11 @@ function Navbar({ onDropdownOpen }) {
   const navLinks = [
     { href: "#services", label: "Services+", dropdown: "services" },
     { href: "#industries", label: "Industries+", dropdown: "industries" },
-    { href: "#international", label: "International+" },
+    {
+      href: "#international",
+      label: "International+",
+      dropdown: "international",
+    },
     { href: "#about", label: "About+" },
     { href: "#work", label: "Work" },
     { href: "#careers", label: "Careers" },
@@ -83,6 +88,11 @@ function Navbar({ onDropdownOpen }) {
               )}
               {link.dropdown === "industries" && (
                 <IndustriesDropdown isOpen={activeDropdown === "industries"} />
+              )}
+              {link.dropdown === "international" && (
+                <InternationalDropdown
+                  isOpen={activeDropdown === "international"}
+                />
               )}
             </div>
           ))}
