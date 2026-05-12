@@ -3,22 +3,25 @@ import { useScrollDirection } from "../../hooks/useScrollDirection";
 import NavLink from "../NavLink/NavLink";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import ServicesDropdown from "../ServicesDropdown/ServicesDropdown";
+import IndustriesDropdown from "../IndustriesDropdown/IndustriesDropdown";
 import "./Navbar.css";
 import SlideButton from "../SlideButton/SlideButton";
 
 function Navbar({ onDropdownOpen }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null); // 'services' | 'industries' | null
+
   const { direction, isPastThreshold, isPastHideThreshold } =
     useScrollDirection();
 
   const isSolid = isPastThreshold;
   const isHidden =
     isPastHideThreshold && direction === "down" && !isMobileMenuOpen;
+  const isAnyDropdownOpen = activeDropdown !== null;
 
   const navLinks = [
-    { href: "#services", label: "Services+", hasDropdown: true },
-    { href: "#industries", label: "Industries+" },
+    { href: "#services", label: "Services+", dropdown: "services" },
+    { href: "#industries", label: "Industries+", dropdown: "industries" },
     { href: "#international", label: "International+" },
     { href: "#about", label: "About+" },
     { href: "#work", label: "Work" },
@@ -31,13 +34,13 @@ function Navbar({ onDropdownOpen }) {
     setIsMobileMenuOpen((prev) => !prev);
   };
 
-  const handleServicesEnter = () => {
-    setIsServicesOpen(true);
+  const handleMouseEnter = (dropdownType) => {
+    setActiveDropdown(dropdownType);
     onDropdownOpen?.(true);
   };
 
-  const handleServicesLeave = () => {
-    setIsServicesOpen(false);
+  const handleMouseLeave = () => {
+    setActiveDropdown(null);
     onDropdownOpen?.(false);
   };
 
@@ -67,11 +70,20 @@ function Navbar({ onDropdownOpen }) {
             <div
               key={link.href}
               className="navbar__nav-item"
-              onMouseEnter={link.hasDropdown ? handleServicesEnter : undefined}
-              onMouseLeave={link.hasDropdown ? handleServicesLeave : undefined}
+              onMouseEnter={
+                link.dropdown
+                  ? () => handleMouseEnter(link.dropdown)
+                  : undefined
+              }
+              onMouseLeave={link.dropdown ? handleMouseLeave : undefined}
             >
               <NavLink href={link.href}>{link.label}</NavLink>
-              {link.hasDropdown && <ServicesDropdown isOpen={isServicesOpen} />}
+              {link.dropdown === "services" && (
+                <ServicesDropdown isOpen={activeDropdown === "services"} />
+              )}
+              {link.dropdown === "industries" && (
+                <IndustriesDropdown isOpen={activeDropdown === "industries"} />
+              )}
             </div>
           ))}
         </nav>
