@@ -12,8 +12,6 @@ import MarqueeSection from "../components/MarqueeSection/MarqueeSection";
 import WhatsNewSection from "../components/WhatsNewSection/WhatsNewSection";
 import ReadyToRiseSection from "../components/ReadyToRiseSection/ReadyToRiseSection";
 
-// import { useGSAP } from "@gsap/react";
-
 /**
  * HomePage Component
  *
@@ -21,33 +19,6 @@ import ReadyToRiseSection from "../components/ReadyToRiseSection/ReadyToRiseSect
  * for scroll-reveal effects on content sections.
  */
 function HomePage() {
-  /* useGSAP(() => {
-    const sections = gsap.utils.toArray(".section");
-
-    sections.forEach((section) => {
-      const elements = section.querySelectorAll(
-        ".section__title, .section__text, .service-card",
-      );
-
-      gsap.from(elements, {
-        scrollTrigger: {
-          trigger: section,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
-      });
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []); */
-
   return (
     <>
       <Navbar />

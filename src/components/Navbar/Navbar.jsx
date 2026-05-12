@@ -1,10 +1,8 @@
 import { useState } from "react";
-// import { gsap } from "gsap";
 import { useScrollDirection } from "../../hooks/useScrollDirection";
 import NavLink from "../NavLink/NavLink";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import "./Navbar.css";
-// import { useGSAP } from "@gsap/react";
 import SlideButton from "../SlideButton/SlideButton";
 
 /**
@@ -45,6 +43,21 @@ function Navbar() {
 
   return (
     <>
+      {/* Announcement Bar */}
+      {/* <div className="announcement-bar" role="banner" aria-label="Announcement"> */}
+      <SlideButton
+        className="announcement-bar"
+        text="🚨 The Category Leaderboard – Live Now"
+        showArrow={false}
+      />
+      {/*   <span className="announcement-bar__icon" aria-hidden="true">
+          🚨
+        </span>
+        <span className="announcement-bar__text">
+          The Category Leaderboard – Live Now
+        </span>
+      </div> */}
+
       <header
         className={`navbar ${isSolid ? "is-solid" : ""} ${isHidden ? "is-hidden" : ""}`}
         id="navbar"
