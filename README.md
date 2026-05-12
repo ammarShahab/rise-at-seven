@@ -1,4 +1,4 @@
-# Rise at Seven — React Website
+# Rise at Seven
 
 A modern, scroll-aware React website featuring an advanced navbar with multi-dropdown hover interactions, GSAP & Framer Motion powered animations.
 
