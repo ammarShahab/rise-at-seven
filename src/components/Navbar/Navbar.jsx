@@ -18,7 +18,7 @@ function Navbar({ onDropdownOpen }) {
   const isSolid = isPastThreshold;
   const isHidden =
     isPastHideThreshold && direction === "down" && !isMobileMenuOpen;
-  const isAnyDropdownOpen = activeDropdown !== null;
+  // const isAnyDropdownOpen = activeDropdown !== null;
 
   const navLinks = [
     { href: "#services", label: "Services+", dropdown: "services" },
