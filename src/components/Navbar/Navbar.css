@@ -25,7 +25,7 @@
 
 .navbar {
   position: fixed;
-  top: 40px; /* Push below announcement bar */
+  top: 45px; /* Push below announcement bar */
   left: 10px;
   right: 10px;
   z-index: 1000;
@@ -55,7 +55,7 @@
 
 /* Hidden state — slides up when scrolling down */
 .navbar.is-hidden {
-  transform: translateY(-120%);
+  transform: translateY(-185%);
 }
 
 /* Logo */
@@ -93,8 +93,12 @@
 }
 
 /* Hide CTA on mobile, show on desktop */
-.navbar__cta {
+/* .navbar__cta {
   display: none;
+} */
+
+.navbar__cta {
+  height: 40px;
 }
 
 @media (min-width: 1024px) {
