@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
  * Custom hook to detect scroll direction and position
  * Returns: { scrollY, direction, isAtTop, isPastThreshold }
  */
-export function useScrollDirection(threshold = 100, hideThreshold = 900) {
+export function useScrollDirection(threshold = 100, hideThreshold = 100) {
   const [scrollState, setScrollState] = useState({
     scrollY: 0,
     direction: "up",

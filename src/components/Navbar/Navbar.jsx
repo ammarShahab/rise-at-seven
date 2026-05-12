@@ -44,19 +44,12 @@ function Navbar() {
   return (
     <>
       {/* Announcement Bar */}
-      {/* <div className="announcement-bar" role="banner" aria-label="Announcement"> */}
+
       <SlideButton
-        className="announcement-bar"
+        className={`announcement-bar ${isSolid ? "is-scrolled" : ""}`}
         text="🚨 The Category Leaderboard – Live Now"
         showArrow={false}
       />
-      {/*   <span className="announcement-bar__icon" aria-hidden="true">
-          🚨
-        </span>
-        <span className="announcement-bar__text">
-          The Category Leaderboard – Live Now
-        </span>
-      </div> */}
 
       <header
         className={`navbar ${isSolid ? "is-solid" : ""} ${isHidden ? "is-hidden" : ""}`}
