@@ -1,0 +1,128 @@
+/* ============================================
+   SERVICES DROPDOWN
+   ============================================ */
+
+.services-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  /* left: 50%; */
+  transform: translateX(-50%);
+  width: 900px;
+  max-width: calc(100vw - 40px);
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  z-index: 999;
+  overflow: hidden;
+}
+
+.dropdown__content {
+  display: flex;
+  min-height: 320px;
+}
+
+.dropdown__main {
+  flex: 1;
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin-bottom: 20px;
+  letter-spacing: 0;
+}
+
+.dropdown__columns {
+  display: flex;
+  gap: 48px;
+}
+
+.dropdown__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dropdown__item {
+  opacity: 0;
+}
+
+.dropdown__link {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #111827;
+  text-decoration: none;
+  display: block;
+  transition: color 0.2s ease;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.dropdown__link:hover {
+  color: #1445a7;
+}
+
+/* Image Section */
+.dropdown__image-section {
+  width: 320px;
+  padding: 16px;
+  /* flex-shrink: 0; */
+}
+
+.dropdown__image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.dropdown__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dropdown__cta-button {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: background 0.2s ease;
+}
+
+.dropdown__cta-button:hover {
+  background: #374151;
+}
+
+.dropdown__cta-button svg {
+  flex-shrink: 0;
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+  .services-dropdown {
+    display: none;
+  }
+}

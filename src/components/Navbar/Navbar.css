@@ -228,3 +228,30 @@
 .menu-toggle.is-active .menu-toggle__bar:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
+
+/* .navbar.has-dropdown {
+  background-color: rgba(250, 250, 249, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+.navbar.has-dropdown .navbar__logo,
+.navbar.has-dropdown .navbar__nav a,
+.navbar.has-dropdown .menu-toggle__bar {
+  color: #111827 !important;
+} */
+
+.navbar__nav-item > a {
+  color: var(--color-text-light, #ffffff);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar.is-solid .navbar__nav-item > a {
+  color: var(--color-text, #111827);
+}

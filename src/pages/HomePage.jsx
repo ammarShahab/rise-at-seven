@@ -11,6 +11,7 @@ import Footer from "../components/Footer/Footer";
 import MarqueeSection from "../components/MarqueeSection/MarqueeSection";
 import WhatsNewSection from "../components/WhatsNewSection/WhatsNewSection";
 import ReadyToRiseSection from "../components/ReadyToRiseSection/ReadyToRiseSection";
+import { useState } from "react";
 
 /**
  * HomePage Component
@@ -19,10 +20,11 @@ import ReadyToRiseSection from "../components/ReadyToRiseSection/ReadyToRiseSect
  * for scroll-reveal effects on content sections.
  */
 function HomePage() {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   return (
     <>
-      <Navbar />
-      <Hero />
+      <Navbar onDropdownOpen={setIsDropdownOpen} />
+      <Hero isBlurred={isDropdownOpen} />
       <LogoMarquee />
       <DemandSection />
       <FeaturedWork />

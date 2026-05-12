@@ -143,7 +143,7 @@ const logos = [
   { name: "amazon", component: AmazonLogo },
 ];
 
-function Hero() {
+function Hero({ isBlurred }) {
   const heroRef = useRef(null);
 
   useGSAP(() => {
@@ -220,7 +220,12 @@ function Hero() {
   }, []);
 
   return (
-    <section className="hero" id="hero" ref={heroRef} aria-label="Hero banner">
+    <section
+      className={`hero ${isBlurred ? "is-blurred" : ""}`}
+      id="hero"
+      ref={heroRef}
+      aria-label="Hero banner"
+    >
       <div className="hero__media">
         <img
           src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"

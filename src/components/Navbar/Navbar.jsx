@@ -2,32 +2,22 @@ import { useState } from "react";
 import { useScrollDirection } from "../../hooks/useScrollDirection";
 import NavLink from "../NavLink/NavLink";
 import MobileMenu from "../MobileMenu/MobileMenu";
+import ServicesDropdown from "../ServicesDropdown/ServicesDropdown";
 import "./Navbar.css";
 import SlideButton from "../SlideButton/SlideButton";
 
-/**
- * Navbar Component
- *
- * Behavior:
- * - Initial: Transparent over hero image
- * - Scroll down > 100px: Becomes solid with blur backdrop
- * - Scroll down > 400px: Hides (slides up)
- * - Scroll up: Reappears
- * - At top: Returns to transparent
- */
-function Navbar() {
+function Navbar({ onDropdownOpen }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const { direction, isPastThreshold, isPastHideThreshold } =
     useScrollDirection();
 
-  // Determine navbar state classes
   const isSolid = isPastThreshold;
   const isHidden =
     isPastHideThreshold && direction === "down" && !isMobileMenuOpen;
 
-  // Navigation links data
   const navLinks = [
-    { href: "#services", label: "Services+" },
+    { href: "#services", label: "Services+", hasDropdown: true },
     { href: "#industries", label: "Industries+" },
     { href: "#international", label: "International+" },
     { href: "#about", label: "About+" },
@@ -41,10 +31,18 @@ function Navbar() {
     setIsMobileMenuOpen((prev) => !prev);
   };
 
+  const handleServicesEnter = () => {
+    setIsServicesOpen(true);
+    onDropdownOpen?.(true);
+  };
+
+  const handleServicesLeave = () => {
+    setIsServicesOpen(false);
+    onDropdownOpen?.(false);
+  };
+
   return (
     <>
-      {/* Announcement Bar */}
-
       <SlideButton
         className={`announcement-bar ${isSolid ? "is-scrolled" : ""}`}
         text="🚨 The Category Leaderboard – Live Now"
@@ -56,25 +54,28 @@ function Navbar() {
         id="navbar"
         role="banner"
       >
-        {/* Logo */}
         <a href="#" className="navbar__logo" aria-label="Rise at Seven Home">
           Rise at Seven
         </a>
 
-        {/* Desktop Navigation */}
         <nav
           className="navbar__nav"
           role="navigation"
           aria-label="Main navigation"
         >
           {navLinks.map((link) => (
-            <NavLink key={link.href} href={link.href}>
-              {link.label}
-            </NavLink>
+            <div
+              key={link.href}
+              className="navbar__nav-item"
+              onMouseEnter={link.hasDropdown ? handleServicesEnter : undefined}
+              onMouseLeave={link.hasDropdown ? handleServicesLeave : undefined}
+            >
+              <NavLink href={link.href}>{link.label}</NavLink>
+              {link.hasDropdown && <ServicesDropdown isOpen={isServicesOpen} />}
+            </div>
           ))}
         </nav>
 
-        {/* CTA Button */}
         <div className="navbar__actions">
           <SlideButton
             text="Get in touch"
@@ -82,7 +83,6 @@ function Navbar() {
             className={`navbar__cta ${isMobileMenuOpen ? "hidden-mobile" : ""}`}
           />
 
-          {/* Mobile Menu Toggle */}
           <button
             className={`menu-toggle ${isMobileMenuOpen ? "is-active" : ""}`}
             onClick={toggleMobileMenu}
@@ -96,7 +96,6 @@ function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
       <MobileMenu
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
